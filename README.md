@@ -10,11 +10,10 @@ sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/instal
 ```
 
 ## 设置颜色主题：
-安装完成后可以运行下面的命令改变当前颜色主题（请使用 bash 运行）：
+安装完成后可以运行下面的命令改变当前颜色主题：
 ```shell
-$ bash ~/.termux/colors.sh
+$ ~/.termux/colors.sh
 ```
-重启应用或者运行`termux-reload-settings`生效。
 
 ## 需要：
  - zsh
@@ -40,11 +39,10 @@ sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/instal
 ```
 
 ## Change color theme:
-You can also change color theme after installation by running this script (bash only).
+You can also change color theme after installation by running this script.
 ```shell
-$ bash ~/.termux/colors.sh
+$ ~/.termux/colors.sh
 ```
-Restart the app or run `termux-reload-settings` to reload.
 
 ## Requirements:
  - zsh

@@ -28,4 +28,5 @@ while [[ "$f" == "1" ]]; do
     echo "Please enter the right number";
   fi
 done
-echo "Please restart the app..."
+
+termux-reload-settings
