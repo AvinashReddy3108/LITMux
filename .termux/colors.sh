@@ -1,4 +1,4 @@
-#/data/data/com.termux/files/usr/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 DIR=`cd $(dirname $0); pwd`
 COLORS_DIR=$DIR/colors
 count=0
@@ -28,5 +28,4 @@ while [[ "$f" == "1" ]]; do
     echo "Please enter the right number";
   fi
 done
-
-#termux-reload-settings
+echo "Please restart the app..."
