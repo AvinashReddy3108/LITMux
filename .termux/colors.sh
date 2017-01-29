@@ -2,9 +2,6 @@
 DIR=`cd $(dirname $0); pwd`
 COLORS_DIR=$DIR/colors
 count=0
-choice="tango.colors"
-re='^[0-9]+$'
-f=1
 
 echo -e "The default color theme is Tango.\nYou can choose another one from the list below";
 
@@ -14,18 +11,18 @@ for colors in "$COLORS_DIR"/*; do
   count=$(( $count + 1 ));
 done;
 
-while [[ "$f" == "1" ]]; do
+while true; do
   read -p 'Enter a number, leave blank to not to change:' number;
   if [[ -z "$number" ]]; then
     break;
-  elif ! [[ $number =~ $re ]]; then
-    echo "Please enter the right number";
+  elif ! [[ $number =~ ^[0-9]+$ ]]; then
+    echo "Please enter the right number!";
   elif (( $number>=0 && $number<=$count )); then
-    f=0;
     eval choice=${colors_name[number]};
     cp -fr $COLORS_DIR/$choice $DIR/colors.properties;
+    break;
   else
-    echo "Please enter the right number";
+    echo "Please enter the right number!";
   fi
 done
 
