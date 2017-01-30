@@ -5,8 +5,8 @@ apt update
 apt install -y git zsh
 git clone https://github.com/Cabbagec/termux-ohmyzsh.git $HOME/termux-ohmyzsh --depth 1
 
-rm -fr $HOME/.termux/*
-cp -R $HOME/termux-ohmyzsh/.termux/* $HOME/.termux/
+rm -fr $HOME/.termux
+cp -R $HOME/termux-ohmyzsh/.termux $HOME/.termux
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1
 cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
