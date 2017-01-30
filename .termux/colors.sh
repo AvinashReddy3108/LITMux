@@ -10,6 +10,7 @@ for colors in "$COLORS_DIR"/*; do
   echo -e "($count) ${colors_name[count]}";
   count=$(( $count + 1 ));
 done;
+count=$(( $count - 1 ));
 
 while true; do
   read -p 'Enter a number, leave blank to not to change:' number;
@@ -19,7 +20,7 @@ while true; do
     echo "Please enter the right number!";
   elif (( $number>=0 && $number<=$count )); then
     eval choice=${colors_name[number]};
-    cp -fr $COLORS_DIR/$choice $DIR/colors.properties;
+    cp -fr "$COLORS_DIR/$choice" "$DIR/colors.properties";
     break;
   else
     echo "Please enter the right number!";
