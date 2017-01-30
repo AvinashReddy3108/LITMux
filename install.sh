@@ -17,6 +17,9 @@ chsh -s zsh
 echo "oh-my-zsh install complete!\nChoose your color scheme now~"
 $HOME/.termux/colors.sh
 
+echo "Choose your font now~"
+$HOME/.termux/fonts.sh
+
 echo "Please restart Termux app..."
 
 exit
