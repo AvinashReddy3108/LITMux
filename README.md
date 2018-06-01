@@ -11,19 +11,26 @@ sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/instal
 ```
 
 ## 设置色彩样式：
-运行更换色彩样式：
+运行`chcolor`更换色彩样式，或者：
 ```shell
 ~/.termux/colors.sh
 ```
 
 ## 设置字体
-运行更换字体：
+运行`chfont`更换字体，或者：
 ```shell
 ~/.termux/fonts.sh
 ```
 
 ## 需要软件包：
  - curl
+
+## 恢复到安装前的环境
+1. 在 home 目录下可找到按日期命名的 zshrc 备份文件，形如 `.zshrc.bak.2018.1.1-00:00:00`，将其文件名恢复为 `.zshrc`。若不存在备份文件，删除当前的 `.zshrc`。
+
+2. 在 home 目录下可找到按日期命名的 termux 备份配置目录，形如 `.termux.bak.2018.1.1-00:00:00`，将其文件名恢复为`.termux`。若不存在备份，删除当前的 `.termux` 目录。
+
+3. 重启 termux
 
 ## 使用提示（参照Termux Wiki）
 要调整字体大小，双指缩放即可。另外，Termux 使用音量键模拟一些 shell 功能：
@@ -47,6 +54,7 @@ sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/instal
 
 ## 示例
 Tango 颜色主题 + oh-my-zsh agnoster 主题 + Ubuntu 字体：
+
 ![](./termux-ohmyzsh.png)
 - - -
 
@@ -66,17 +74,25 @@ sh -c "$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/instal
 ```
 
 ## Change color scheme:
-Run the script to change color scheme.
+Run `chcolor` to change color scheme, or run:
 ```shell
 ~/.termux/colors.sh
 ```
 ## Change font:
+Run `chfont` to change font, or run:
 ```shell
 ~/.termux/fonts.sh
 ```
 
 ## Requirements:
  - curl
+
+## Revert environment
+1. Under the home directory, you can find some zshrc backup files named with date, like `.zshrc.bak.2018.1.1-00:00:00`. Rename the backup file back to `.zshrc`. If there doesn't exist any backups, remove the current `.zshrc`.
+
+2. You can also find some termux configuration backup directory, named with date, like `.termux.bak.2018.1.1-00:00:00`. Rename the backup directory back to `.termux`. If there doesn't exist any backups, remove the current `.termux`.
+
+3. Restart termux
 
 ## Tips (See Termux Wiki)
 Use two-finger pinch to adjust font size. Termux use combination with volume keys to emulate some functions in shell:
