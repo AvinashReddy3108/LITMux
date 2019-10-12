@@ -1,4 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
+clear
+echo "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
+echo "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
+echo "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
+echo "██║     ██║   ██║   ██║╚██╔╝██║██║   ██║ ██╔██╗ ";
+echo "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
+echo "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
+echo "";
+echo "Let's ditch the boring old BASH shell, shall we ?";
+sleep 3
 
 # Giving Storage permision to Termux App.
 termux-setup-storage
@@ -31,24 +41,23 @@ echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HO
 # Installing powerlevel10k theme for ZSH,
 # and sourcing it in the .zshrc file.
 git clone https://github.com/romkatv/powerlevel10k.git "$HOME/.powerlevel10k" --depth 1
+curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 echo "source $HOME/.powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
 
 # Changing default shell to ZSH,
 # goodbye boring BASH.
 chsh -s zsh
 
+# Choosing a cool color scheme for ZSH.
 clear
 echo "Let's choose a good color scheme for the shell, shall we ?"
-echo "NOTE: use 'chcol' to change shell colors anytime later."
+echo "NOTE: use 'chcolor' to change shell colors anytime later."
+echo ""
 $HOME/.termux/litmux_colors.sh
 
 clear
-echo "Good, let's move on to set up our Terminal prompt style."
-echo "Starting setup wizard in 5 seconds, please wait."
-echo "NOTE: you may need to decrease the zoom of the terminal, by pinching inwards on the screen."
-sleep 5
-p10k configure
-
-clear
+termux-reload-settings
+echo "LitMux Installed successfully, gimme cookies !"
 echo "Restart the Termux app to enjoy the LIT experience."
+echo "NOTE: use 'p10k configure' to configure your terminal prompt anytime later."
 exit
