@@ -7,7 +7,7 @@ echo "██║     ██║   ██║   ██║╚██╔╝██║█
 echo "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
 echo "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 echo "";
-echo "Let's ditch the boring old BASH shell, shall we ?";
+echo "      Ditch the boring BASH and get LIT !!      ";
 sleep 3
 
 # Giving Storage permision to Termux App.
