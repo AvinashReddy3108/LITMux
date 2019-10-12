@@ -7,12 +7,12 @@ termux-setup-storage
 # and installing requirements.
 apt update
 apt install -y git zsh
-git clone https://github.com/AvinashReddy3108/LitMux.git "$HOME/LitMux" --depth 1
+git clone https://github.com/AvinashReddy3108/LitMux.git "$HOME/.LitMux" --depth 1
 
 # Making a backup of Termux config directory,
 # just in case you want to revert.
 mv "$HOME/.termux" "$HOME/.termux.bak.$(date +%Y.%m.%d-%H:%M:%S)"
-cp -R "$HOME/LitMux/.termux" "$HOME/.termux"
+cp -R "$HOME/.LitMux/.termux" "$HOME/.termux"
 
 # Installing Oh My ZSH as a replacement of BASH,
 # plus setting up .zshrc file, and adding aliases.
@@ -37,9 +37,18 @@ echo "source $HOME/.powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
 # goodbye boring BASH.
 chsh -s zsh
 
+clear
 echo "Let's choose a good color scheme for the shell, shall we ?"
 echo "NOTE: use 'chcol' to change shell colors anytime later."
 $HOME/.termux/litmux_colors.sh
 
+clear
+echo "Good, let's move on to set up our Terminal prompt style."
+echo "Starting setup wizard in 5 seconds, please wait."
+echo "NOTE: you may need to decrease the zoom of the terminal, by pinching inwards on the screen."
+sleep 5
+p10k configure
+
+clear
 echo "Restart the Termux app to enjoy the LIT experience."
 exit
