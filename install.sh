@@ -18,7 +18,7 @@ termux-setup-storage
 apt update
 apt install -y git zsh
 
-if [-d "$HOME/.LitMux" ]; then
+if [ -d "$HOME/.LitMux" ]; then
 rm -rf "$HOME/.LitMux"
 fi
 
@@ -32,7 +32,7 @@ cp -R "$HOME/.LitMux/.termux" "$HOME/.termux"
 # Installing Oh My ZSH as a replacement of BASH,
 # plus setting up .zshrc file, and adding aliases.
 
-if [-d "$HOME/.oh-my-zsh" ]; then
+if [ -d "$HOME/.oh-my-zsh" ]; then
 rm -rf "$HOME/.oh-my-zsh"
 fi
 
@@ -46,7 +46,7 @@ echo "alias chcolor='$HOME/.termux/litmux_colors.sh'" >> "$HOME/.zshrc"
 # Installing Syntax Highlighting addon for ZSH,
 # and sourcing it in the .zshrc file.
 
-if [-d "$HOME/.zsh-syntax-highlighting" ]; then
+if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
 rm -rf "$HOME/.zsh-syntax-highlighting"
 fi
 
@@ -56,7 +56,7 @@ echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HO
 # Installing powerlevel10k theme for ZSH,
 # and sourcing it in the .zshrc file.
 
-if [-d "$HOME/.powerlevel10k" ]; then
+if [ -d "$HOME/.powerlevel10k" ]; then
 rm -rf "$HOME/.powerlevel10k"
 fi
 
