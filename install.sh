@@ -15,8 +15,8 @@ termux-setup-storage
 
 # Updating package repositories 
 # and installing requirements.
-apt update
-apt install -y git zsh
+pkg update
+pkg install -y git zsh
 
 if [ -d "$HOME/.LitMux" ]; then
 rm -rf "$HOME/.LitMux"
@@ -61,8 +61,10 @@ rm -rf "$HOME/.powerlevel10k"
 fi
 
 git clone https://github.com/romkatv/powerlevel10k.git "$HOME/.powerlevel10k" --depth 1
-curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 echo "source $HOME/.powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
+
+# Installing the Powerline font for Termux.
+curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 
 # Changing default shell to ZSH,
 # goodbye boring BASH.
