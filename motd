@@ -1,0 +1,31 @@
+        _      _  _    __  __
+       | |    (_)| |_ |  \/  | _   _ __  __
+       | |    | |+ __|+ |\/| +| | | |\ \/ /
+       | |___ | +| |_ | |  | +| |_| | >  <
+       |_____||_| \__||_|  |_| \__,_|/_/\_\
+
++--------------------------------------------------+
+| Wiki:            https://wiki.termux.com         |
+| Community:       https://termux.com/community    |
+| Gitter chat:     https://gitter.im/termux/termux |
+| IRC channel:     #termux on freenode             |
+| Issue Tracker:   https://termux.com/issues       |
++--------------------------------------------------+
++--------------------------------------------------+
+| Working with packages:                           |
+|                                                  |
+|     * Search packages:   pkg search <query>      |
+|     * Install a package: pkg install <package>   |
+|     * Upgrade packages:  pkg upgrade             |
+|                                                  |
+| Subscribing to additional repositories:          |
+|                                                  |
+|     * Root:     pkg install root-repo            |
+|     * Unstable: pkg install unstable-repo        |
+|     * X11:      pkg install x11-repo             |
+|                                                  |
+| Customizing Look and Feel:                       |
+|                                                  |
+|     * powerlevel10k wizard: p10k configure       |
+|     * Color scheme chooser: chcolor              |
++--------------------------------------------------+
