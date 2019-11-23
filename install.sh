@@ -51,5 +51,5 @@ curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw
 # set 'Tango' as the default color scheme for the shell.
 cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/colors.properties
 
-# Run
-exec -l zsh
+# Run a ZSH shell, atleast for the powerlevel10k wizard
+exec zsh -l
