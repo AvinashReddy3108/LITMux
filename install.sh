@@ -49,8 +49,8 @@ chsh -s zsh
 
 # Adding aliases for stuff
 sed_handle_alias_zshrc "litmux-color" "'$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/litmux_colors.sh'"
-sed_handle_alias_zshrc "litmux-style" "p10k configure'"
-sed_handle_alias_zshrc "litmux-update" "upgrade_oh_my_zsh"
+sed_handle_alias_zshrc "litmux-style" "'p10k configure'"
+sed_handle_alias_zshrc "litmux-update" "'upgrade_oh_my_zsh'"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
