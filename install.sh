@@ -14,12 +14,14 @@ git_force_clone_shallow () {
    if [ -d "$2" ]; then
    rm -rf "$2"
    fi
-   git clone --depth 1 $1 $2
+   git clone --depth 1 "$1" "$2"
 }
 
 sed_handle_plugin_zshrc () {
-   if [ ! grep "^plugins=*$1*" ~/.zshrc ]; then
-   sed -i 's/\(^plugins=([^)]*\)/\1 $1/' ~/.zshrc
+   if  grep "^plugins=*$1*" ~/.zshrc ; then
+   true
+   else
+   sed -i "s/\(^plugins=([^)]*\)/\1 $1/" ~/.zshrc
    fi
 }
 
