@@ -1,6 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-DIR=`cd $(dirname $0); pwd`
-COLORS_DIR=$DIR/colors
+COLORS_DIR="$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors"
 count=0
 
 echo -e "The default color theme is Tango.\nYou can choose another one from the list below";
@@ -20,7 +19,7 @@ while true; do
     echo "Please enter the right number!";
   elif (( $number>=0 && $number<=$count )); then
     eval choice=${colors_name[number]};
-    cp -fr "$COLORS_DIR/$choice" "$DIR/colors.properties";
+    cp -fr "$COLORS_DIR/$choice" "$HOME/.termux/colors.properties";
     break;
   else
     echo "Please enter the right number!";
