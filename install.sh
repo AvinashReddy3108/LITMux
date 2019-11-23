@@ -47,10 +47,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Changing default shell to ZSH, goodbye boring BASH.
 chsh -s zsh
 
-# Adding aliases for stuff
+# Adding aliases for LITMUX stuff.
 sed_handle_alias_zshrc "litmux-color" "'$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/litmux_colors.sh'"
 sed_handle_alias_zshrc "litmux-style" "'p10k configure'"
 sed_handle_alias_zshrc "litmux-update" "'upgrade_oh_my_zsh'"
+sed_handle_alias_zshrc "litmux-remove" "'rm -f ~/.termux/font.ttf; rm -f ~/.termux/colors.properties; termux-reload-settings; uninstall_oh_my_zsh'"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
