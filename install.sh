@@ -25,6 +25,14 @@ sed_handle_plugin_zshrc () {
    fi
 }
 
+sed_handle_alias_zshrc () {
+   if  grep "^alias $1=*" ~/.zshrc ; then
+   true
+   else
+   echo "alias $1=$2" >> ~/.zshrc
+   fi
+}
+
 # Giving Storage permision to Termux App.
 termux-setup-storage
 
@@ -40,17 +48,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 chsh -s zsh
 
 # Adding aliases for stuff
-echo "alias litmux-color='$HOME/.oh-my-zsh/custom/misc/LitMux/litmux_colors.sh'" >> ~/.zshrc
-echo "alias litmux-style='p10k configure'"
-echo "alias litmux-update='upgrade_oh_my_zsh'"
+sed_handle_alias_zshrc "litmux-color" "'$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/litmux_colors.sh'"
+sed_handle_alias_zshrc "litmux-style" "p10k configure'"
+sed_handle_alias_zshrc "litmux-update" "upgrade_oh_my_zsh"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-sed_handle_plugin_zshrc zsh-syntax-highlighting
+sed_handle_plugin_zshrc "zsh-syntax-highlighting"
 
 # Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
 git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
-sed_handle_plugin_zshrc autoupdate
+sed_handle_plugin_zshrc "autoupdate"
 
 # Cloning the LITMUX repo, to be handled by the Oh-My-ZSH updater.
 git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
@@ -62,8 +70,8 @@ sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 # Installing the Powerline font for Termux.
 curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 
-# set 'Tango' as the default color scheme for the shell.
-cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/colors.properties
+# TODO: set 'Tango' as the default color scheme for the shell.
+#cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/colors.properties
 
-# Run a ZSH shell, atleast for the powerlevel10k wizard
+# Run a ZSH shell, opens the p10k config wizard if not set up already.
 exec zsh -l
