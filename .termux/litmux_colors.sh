@@ -19,6 +19,7 @@ while true; do
     echo "Please enter the right number!";
   elif (( $number>=0 && $number<=$count )); then
     eval choice=${colors_name[number]};
+    echo "Copying $COLORS_DIR/$choice to $HOME/.termux/colors.properties"
     cp -fr "$COLORS_DIR/$choice" "$HOME/.termux/colors.properties";
     break;
   else
