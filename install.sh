@@ -18,7 +18,7 @@ git_force_clone_shallow () {
 }
 
 sed_handle_plugin_zshrc () {
-   if [ ! grep "^plugins=*$1*" ~/.zshrc ]
+   if [ ! grep "^plugins=*$1*" ~/.zshrc ]; then
    sed -i 's/\(^plugins=([^)]*\)/\1 $1/' ~/.zshrc
    fi
 }
