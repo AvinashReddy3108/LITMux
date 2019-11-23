@@ -26,21 +26,17 @@ git clone https://github.com/AvinashReddy3108/LitMux.git "$HOME/.LitMux" --depth
 
 # Making a backup of Termux config directory,
 # just in case you want to revert.
-mv "$HOME/.termux" "$HOME/.termux.bak.$(date +%Y.%m.%d-%H:%M:%S)"
+mv -f "$HOME/.termux" "$HOME/.termux.bak"
 cp -R "$HOME/.LitMux/.termux" "$HOME/.termux"
 
-# Installing Oh My ZSH as a replacement of BASH,
-# plus setting up .zshrc file, and adding aliases.
+# Installing Oh My ZSH as a replacement of BASH.
+echo "Installing oh-my-ZSH..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" > /dev/null
 
-if [ -d "$HOME/.oh-my-zsh" ]; then
-rm -rf "$HOME/.oh-my-zsh"
-fi
+# Changing default shell to ZSH, goodbye boring BASH.
+chsh -s zsh
 
-git clone git://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh" --depth 1
-mv "$HOME/.zshrc" "$HOME/.zshrc.bak.$(date +%Y.%m.%d-%H:%M:%S)"
-cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
-sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
-sed -i '1iZSH_THEME="agnoster"' "$HOME/.zshrc"
+# Adding aliases for stuff
 echo "alias chcolor='$HOME/.termux/litmux_colors.sh'" >> "$HOME/.zshrc"
 
 # Installing Syntax Highlighting addon for ZSH,
@@ -62,13 +58,10 @@ fi
 
 git clone https://github.com/romkatv/powerlevel10k.git "$HOME/.powerlevel10k" --depth 1
 echo "source $HOME/.powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
+sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' "$HOME/.zshrc"
 
 # Installing the Powerline font for Termux.
 curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
-
-# Changing default shell to ZSH,
-# goodbye boring BASH.
-chsh -s zsh
 
 # Choosing a cool color scheme for ZSH.
 clear
