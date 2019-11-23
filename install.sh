@@ -70,8 +70,9 @@ sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 # Installing the Powerline font for Termux.
 curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 
-# TODO: set 'Tango' as the default color scheme for the shell.
-#cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/colors.properties
+# Set 'Tango' as the default color scheme for the shell.
+cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/.termux/colors.properties
+termux-reload-settings
 
 # Run a ZSH shell, opens the p10k config wizard if not set up already.
 exec zsh -l
