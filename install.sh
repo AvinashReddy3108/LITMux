@@ -18,61 +18,38 @@ termux-setup-storage
 pkg update
 pkg install -y git zsh
 
-if [ -d "$HOME/.LitMux" ]; then
-rm -rf "$HOME/.LitMux"
-fi
-
-git clone https://github.com/AvinashReddy3108/LitMux.git "$HOME/.LitMux" --depth 1
-
-# Making a backup of Termux config directory,
-# just in case you want to revert.
-mv -f "$HOME/.termux" "$HOME/.termux.bak"
-cp -R "$HOME/.LitMux/.termux" "$HOME/.termux"
-
 # Installing Oh My ZSH as a replacement of BASH.
 echo "Installing oh-my-ZSH..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" > /dev/null
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 
 # Changing default shell to ZSH, goodbye boring BASH.
 chsh -s zsh
 
 # Adding aliases for stuff
-echo "alias chcolor='$HOME/.termux/litmux_colors.sh'" >> "$HOME/.zshrc"
+echo "alias litmux-color='$HOME/.oh-my-zsh/custom/misc/LitMux/litmux_colors.sh'" >> ~/.zshrc
+echo "alias litmux-style='p10k configure'"
+echo "alias litmux-update='upgrade_oh_my_zsh'"
 
-# Installing Syntax Highlighting addon for ZSH,
-# and sourcing it in the .zshrc file.
+# Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
+git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+sed -i 's/\(^plugins=([^)]*\)/\1 zsh-syntax-highlighting/' ~/.zshrc
 
-if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
-rm -rf "$HOME/.zsh-syntax-highlighting"
-fi
+# Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
+git clone --depth 1 https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
+sed -i 's/\(^plugins=([^)]*\)/\1 autoupdate/' ~/.zshrc
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting" --depth 1
-echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc"
+# Cloning the LITMUX repo, to be handled by the Oh-My-ZSH updater.
+git clone --depth 1 https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
 
-# Installing powerlevel10k theme for ZSH,
-# and sourcing it in the .zshrc file.
-
-if [ -d "$HOME/.powerlevel10k" ]; then
-rm -rf "$HOME/.powerlevel10k"
-fi
-
-git clone https://github.com/romkatv/powerlevel10k.git "$HOME/.powerlevel10k" --depth 1
-echo "source $HOME/.powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
-sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' "$HOME/.zshrc"
+# Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
+git clone --depth 1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/zsh-syntax-highlighting"
+sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 
 # Installing the Powerline font for Termux.
 curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
 
-# Choosing a cool color scheme for ZSH.
-clear
-echo "Let's choose a good color scheme for the shell, shall we ?"
-echo "NOTE: use 'chcolor' to change shell colors anytime later."
-echo ""
-$HOME/.termux/litmux_colors.sh
+# set 'Tango' as the default color scheme for the shell.
+cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/colors.properties
 
-clear
-termux-reload-settings
-echo "LitMux Installed successfully, gimme cookies !"
-echo "Restart the Termux app to enjoy the LIT experience."
-echo "NOTE: use 'p10k configure' to configure your terminal prompt anytime later."
-exit
+# Run
+exec -l zsh
