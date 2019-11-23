@@ -18,7 +18,7 @@ git_force_clone_shallow () {
 }
 
 sed_handle_plugin_zshrc () {
-   if  grep "^plugins=*$1*" ~/.zshrc ; then
+   if grep "^plugins=*$1*" ~/.zshrc ; then
    true
    else
    sed -i "s/\(^plugins=([^)]*\)/\1 $1/" ~/.zshrc
@@ -26,7 +26,7 @@ sed_handle_plugin_zshrc () {
 }
 
 sed_handle_alias_zshrc () {
-   if  grep "^alias $1=*" ~/.zshrc ; then
+   if grep "^alias $1=*" ~/.zshrc ; then
    true
    else
    echo "alias $1=$2" >> ~/.zshrc
@@ -51,7 +51,7 @@ chsh -s zsh
 sed_handle_alias_zshrc "litmux-color" "'$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/litmux_colors.sh'"
 sed_handle_alias_zshrc "litmux-style" "'p10k configure'"
 sed_handle_alias_zshrc "litmux-update" "'upgrade_oh_my_zsh'"
-sed_handle_alias_zshrc "litmux-remove" "'rm -f ~/.termux/font.ttf; rm -f ~/.termux/colors.properties; termux-reload-settings; uninstall_oh_my_zsh'"
+sed_handle_alias_zshrc "litmux-remove" "'rm -rf ~/.oh-my-zsh; rm -f ~/.termux/font.ttf; rm -f ~/.termux/colors.properties; rm -f ~/.zshrc; pkg remove zsh; chsh -s bash; termux-reload-settings'"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
