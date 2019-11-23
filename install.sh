@@ -10,11 +10,17 @@ echo "";
 echo "      Ditch the boring BASH and get LIT !!      ";
 sleep 3
 
+git_force_clone_shallow () {
+   if [ -d "$2" ]; then
+   rm -rf "$2"
+   fi
+   git clone --depth 1 $1 $2
+}
+
 # Giving Storage permision to Termux App.
 termux-setup-storage
 
-# Updating package repositories 
-# and installing requirements.
+# Updating package repositories and installing requirements.
 pkg update
 pkg install -y git zsh
 
@@ -31,18 +37,18 @@ echo "alias litmux-style='p10k configure'"
 echo "alias litmux-update='upgrade_oh_my_zsh'"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
-git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 sed -i 's/\(^plugins=([^)]*\)/\1 zsh-syntax-highlighting/' ~/.zshrc
 
 # Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
-git clone --depth 1 https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
+git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
 sed -i 's/\(^plugins=([^)]*\)/\1 autoupdate/' ~/.zshrc
 
 # Cloning the LITMUX repo, to be handled by the Oh-My-ZSH updater.
-git clone --depth 1 https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
+git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
 
 # Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
-git clone --depth 1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/zsh-syntax-highlighting"
+git_force_clone_shallow https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/zsh-syntax-highlighting"
 sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 
 # Installing the Powerline font for Termux.
