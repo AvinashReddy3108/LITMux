@@ -76,7 +76,7 @@ cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/.termux
 termux-reload-settings
 
 # Replace the default welcome text with a customized one.
-cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/motd" "$PREFIX/etc/motd"
+cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/motd-lit" "$PREFIX/etc/motd"
 
 # Run a ZSH shell, opens the p10k config wizard if not set up already.
 exec zsh -l
