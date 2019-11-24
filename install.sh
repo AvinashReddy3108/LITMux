@@ -22,8 +22,7 @@ sed_handle_plugin_zshrc () {
    true
    else
    sed -i "s/\(^plugins=([^)]*\)/\1 $1/" ~/.zshrc
-   PLUGINS_DEDUPED = $($plugins|sed -e 's/\b\([a-z]\+\)[ ,\n]\1/\1/g')
-   sed -i "s/\(^plugins=([^)]*\)/$PLUGINS_DEDUPED/" ~/.zshrc
+   sed -i "^plugins=*/plugins='($($plugins|sed -e 's/\b\([a-z]\+\)[ ,\n]\1/\1/g')'" ~/.zshrc
    fi
 }
 
