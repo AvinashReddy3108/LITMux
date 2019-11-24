@@ -29,6 +29,7 @@ sed_handle_alias_zshrc () {
    if grep "^alias $1=*" ~/.zshrc ; then
    true
    else
+   sed -i "/^alias $1=*/d" ~/.zshrc
    echo "alias $1=$2" >> ~/.zshrc
    fi
 }
