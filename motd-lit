@@ -4,8 +4,8 @@ Welcome to LitMux!
 Wiki:            https://wiki.termux.com
 Community forum: https://termux.com/community
 Gitter chat:     https://gitter.im/termux/termux
-IRC channel:     #termux on freenode
 Issue Tracker:   https://termux.com/issues
+IRC channel:     #termux on freenode
 
 Working with packages:
 
@@ -18,11 +18,11 @@ Subscribing to additional repositories:
  * Root:     pkg install root-repo
  * Unstable: pkg install unstable-repo
  * X11:      pkg install x11-repo
- 
-Customizing Look and Feel:
 
- * Color Scheme:         litmux-color
- * Shell Prompt:         litmux-style
- * Update Litmux:        litmux-update
- * Restore old Termux:   litmux-remove
+Customizing Look and Feel
+ 
+ *Color Scheme:   litmux-color
+ *Shell prompt:   litmux-style
+ *Update LitMux:  litmux-update
+ *Remove LitMux:  litmux-remove
 
