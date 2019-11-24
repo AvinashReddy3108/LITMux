@@ -21,8 +21,7 @@ Subscribing to additional repositories:
 
 Customizing Look and Feel
  
- *Color Scheme:   litmux-color
- *Shell prompt:   litmux-style
- *Update LitMux:  litmux-update
- *Remove LitMux:  litmux-remove
-
+ * Color Scheme:   litmux-color
+ * Shell prompt:   litmux-style
+ * Update LitMux:  litmux-upgrade
+ * Remove LitMux:  litmux-purge
