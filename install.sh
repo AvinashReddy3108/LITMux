@@ -62,7 +62,7 @@ sed_handle_plugin_zshrc "zsh-syntax-highlighting"
 git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
 sed_handle_plugin_zshrc "autoupdate"
 
-# Cloning the LITMUX repo, to be handled by the Oh-My-ZSH updater.
+# Cloning the LITMUX repo, to be handled by the updater.
 git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
 
 # Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
