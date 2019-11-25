@@ -19,11 +19,11 @@ if [ "$confirmation" != y ] && [ "$confirmation" != Y ]; then
   exit
 fi
 
-# Purge Oh-My-ZSH stuff.
-rm -rf ~/.oh-my-zsh
-
 # Restores stock welcome text.
 cp -fr $HOME/.oh-my-zsh/custom/misc/LitMux/motd-default $PREFIX/etc/motd
+
+# Purge Oh-My-ZSH stuff.
+rm -rf ~/.oh-my-zsh
 
 # Restores stock color scheme.
 rm -f ~/.termux/colors.properties
@@ -35,6 +35,8 @@ rm -f ~/.termux/font.ttf
 rm -f ~/.zshrc.pre-oh-my-zsh
 rm -f ~/.zshrc.omz-uninstalled*
 rm -f ~/.shell.pre-oh-my-zsh
+rm -f ~/.p10k.zsh*
+rm -f $PREFIX/tmp/.zshrc*
 
 # Sets BASH as the default shell
 chsh -s bash
