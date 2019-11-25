@@ -124,7 +124,7 @@ if [ ! -f ~/.p10k.zsh ]; then
 sed -i "/.p10k.zsh/d" ~/.zshrc
 fi
 
-if [ "$0" = "bash" ]; then
+if [ grep -q "bash" $0 ]; then
 exec zsh -l
 fi
 
