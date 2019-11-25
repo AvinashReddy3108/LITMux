@@ -64,7 +64,7 @@ chsh -s zsh
 # Adding aliases for LITMUX stuff.
 sed_handle_alias_zshrc "litmux-color" "'$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.sh'"
 sed_handle_alias_zshrc "litmux-style" "'p10k configure'"
-sed_handle_alias_zshrc "litmux-upgrade" "'$HOME/.oh-my-zsh/custom/misc/LitMux/upgrade.sh'"
+sed_handle_alias_zshrc "litmux-upgrade" "'$HOME/.oh-my-zsh/custom/misc/LitMux/upgrade.zsh'"
 sed_handle_alias_zshrc "litmux-purge" "'$HOME/.oh-my-zsh/custom/misc/LitMux/uninstall.sh'"
 
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
