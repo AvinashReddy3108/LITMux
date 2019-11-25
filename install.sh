@@ -18,8 +18,8 @@ git_force_clone_shallow () {
 }
 
 sed_handle_plugin_zshrc () {
-   if grep "^plugins=*$1*" ~/.zshrc ; then
-   true
+   if grep -q "$1" "$plugins" ; then
+   echo "The ZSH plugin '$1' is already installed in the .zshrc file. Skipping.."
    else
    sed -i "s/\(^plugins=([^)]*\)/\1 $1/" ~/.zshrc
    fi
