@@ -99,6 +99,10 @@ show_banner
 echo "Changing default color scheme for Termux..."
 cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors.properties" ~/.termux/colors.properties
 termux-reload-settings
+else
+show_banner
+echo "Using existing custom color scheme for Termux."
+termux-reload-settings
 fi
 
 # Replace the default welcome text with a customized one.
@@ -117,17 +121,11 @@ echo "      Installation Complete, gimme cookies.     ";
 sleep 3
 
 if [ ! -f ~/.p10k.zsh ]; then
-    if [ ! grep -q "p10k.zsh" ~/.zshrc ]; then
-      clear
-      show_banner
-      echo "Initialising the configuration wizard for Powerlevel10k theme, please wait."
-      sleep 2
-      exec zsh -l
-    fi
+sed -i "/.p10k.zsh/d" ~/.zshrc
 fi
 
 if [ "$0" = "bash" ]; then
 exec zsh -l
 fi
 
-done
+exit
