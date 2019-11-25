@@ -128,4 +128,6 @@ fi
 
 if [ "$0" = "bash" ]; then
 exec zsh -l
+fi
+
 done
