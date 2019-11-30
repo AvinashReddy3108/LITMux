@@ -56,7 +56,7 @@ pkg install -y git zsh
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
 echo "Installing Oh-My-ZSH..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" > /dev/null 2>> ~/litmux_err.log
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" > /dev/null
 
 # Changing default shell to ZSH, goodbye boring BASH.
 chsh -s zsh
@@ -70,28 +70,28 @@ sed_handle_alias_zshrc "litmux-purge" "'$HOME/.oh-my-zsh/custom/misc/LitMux/unin
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 show_banner
 echo "Installing 'Syntax Highlighting' addon for Oh-My-ZSH..."
-git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" > /dev/null 2>> ~/litmux_err.log
+git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" > /dev/null
 sed_handle_plugin_zshrc "zsh-syntax-highlighting"
 
 # Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
 show_banner
 echo "Installing 'Custom Plugins Updater' addon for Oh-My-ZSH..."
-git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate" > /dev/null 2>> ~/litmux_err.log
+git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate" > /dev/null
 sed_handle_plugin_zshrc "autoupdate"
 
 # Cloning the LITMUX repo, to be handled by the updater.
-git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux" > /dev/null 2>> ~/litmux_err.log
+git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux" > /dev/null
 
 # Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
 show_banner
 echo "Installing 'Powerlevel10K' theme for ZSH..."
-git_force_clone_shallow https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" > /dev/null 2>> ~/litmux_err.log
+git_force_clone_shallow https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" > /dev/null
 sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 
 # Installing the Powerline font for Termux.
 show_banner
 echo "Installing the Powerline patched font for Termux..."
-curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' > /dev/null 2>> ~/litmux_err.log
+curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' > /dev/null
 
 # Set 'Tango' as the default color scheme for the shell.
 if [ ! -e ~/.termux/colors.properties ]; then
@@ -124,7 +124,7 @@ if [ ! -f ~/.p10k.zsh ]; then
 sed -i "/.p10k.zsh/d" ~/.zshrc
 fi
 
-if grep -q "bash" $0; then
+if ! grep -q "bash" "$SHELL"; then
 exec zsh -l
 fi
 
