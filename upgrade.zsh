@@ -37,15 +37,16 @@ fi
 clear
 printf "${BLUE}%s${NORMAL}\n" "Upgrading custom plugins"
 
-find "${ZSH_CUSTOM:$ZSH/custom}" -type d -name .git | while read d
+find "${ZSH_CUSTOM:-${ZSH/custom}}" -type d -name .git | while read d
 do
 p=$(dirname "$d")
 cd "${p}"
+plugin_name=$(basename "$p")
 
-if git pull --rebase --stat origin master > /dev/null 2>> ~/litmux_err.log
+if git pull --rebase --stat origin master > /dev/null
 then
-  printf "${BLUE}%s${NORMAL}\n" "Hooray! $d has been updated and/or is at the current version."
+  printf "${BLUE}%s${NORMAL}\n" "Hooray! $plugin_name has been updated and/or is at the current version."
 else
-  printf "${RED}%s${NORMAL}\n" 'There was an error updating. Try again later?'
+  printf "${RED}%s${NORMAL}\n" "There was an error updating $plugin_name. Try again later?"
 fi
 done
