@@ -13,7 +13,8 @@ sleep 3
 clear
 
 # Upgrade Oh-My-ZSH using native updater.
-upgrade_oh_my_zsh
+echo "Upgrading Oh-My-ZSH, please wait.."
+$ZSH/tools/upgrade.sh > /dev/null 2>> ~/litmux_err.log
 
 # Upgrade all ZSH custom plugins and themes.
 # A forced version of TamCore's autoinstall plugin for ZSH.
@@ -33,14 +34,15 @@ else
   NORMAL=""
 fi
 
+clear
 printf "${BLUE}%s${NORMAL}\n" "Upgrading custom plugins"
 
-find "${ZSH_CUSTOM}" -type d -name .git | while read d
+find "${ZSH_CUSTOM:$ZSH/custom}" -type d -name .git | while read d
 do
 p=$(dirname "$d")
 cd "${p}"
 
-if git pull --rebase --stat origin master
+if git pull --rebase --stat origin master > /dev/null 2>> ~/litmux_err.log
 then
   printf "${BLUE}%s${NORMAL}\n" "Hooray! $d has been updated and/or is at the current version."
 else
