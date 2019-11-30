@@ -14,7 +14,7 @@ clear
 
 # Upgrade Oh-My-ZSH using native updater.
 echo "Upgrading Oh-My-ZSH, please wait.."
-$ZSH/tools/upgrade.sh > /dev/null 2>> ~/litmux_err.log
+$ZSH/tools/upgrade.sh > /dev/null
 
 # Upgrade all ZSH custom plugins and themes.
 # A forced version of TamCore's autoinstall plugin for ZSH.
