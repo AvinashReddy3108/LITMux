@@ -47,11 +47,11 @@ termux-setup-storage
 
 # Updating package repositories and installing requirements.
 echo "Checking repositories for updated packages, please wait..."
-pkg update > /dev/null 2>> ~/litmux_err.log
+apt update > /dev/null
 
 show_banner
 echo "Installing required packages, please wait...."
-pkg install -y git zsh
+apt install -y git zsh
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
