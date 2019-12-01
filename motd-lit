@@ -1,28 +1,37 @@
 
-Welcome to LitMux!
+  Welcome to
+            __    _ _   _____
+           |  |  |_| |_|     |_ _ _ _
+           |  |__| |  _| | | | | |_'_|
+           |_____|_|_| |_|_|_|___|_,_|
 
-Wiki:            https://wiki.termux.com
-Community forum: https://termux.com/community
-Gitter chat:     https://gitter.im/termux/termux
-Issue Tracker:   https://termux.com/issues
-IRC channel:     #termux on freenode
++--------------------------------------------------+
+| Wiki:            https://wiki.termux.com         |
+| Community forum: https://termux.com/community    |
+| Gitter chat:     https://gitter.im/termux/termux |
+| Issue Tracker:   https://termux.com/issues       |
+| IRC channel:     #termux on freenode             |
++--------------------------------------------------+
 
-Working with packages:
+            [ Working with packages ]
++--------------------------------------------------+
+|  * Search packages:   apt search <query>         |
+|  * Install a package: apt install <package>      |
+|  * Upgrade packages:  apt upgrade                |
++--------------------------------------------------+
 
- * Search packages:   pkg search <query>
- * Install a package: pkg install <package>
- * Upgrade packages:  pkg upgrade
+     [ Subscribing to additional repositories ]
++--------------------------------------------------+
+|  * Root:     pkg install root-repo               |
+|  * Unstable: pkg install unstable-repo           |
+|  * X11:      pkg install x11-repo                |
++--------------------------------------------------+
 
-Subscribing to additional repositories:
-
- * Root:     pkg install root-repo
- * Unstable: pkg install unstable-repo
- * X11:      pkg install x11-repo
-
-Customizing Look and Feel
- 
- * Color Scheme:   litmux-color
- * Shell prompt:   litmux-style
- * Update LitMux:  litmux-upgrade
- * Remove LitMux:  litmux-purge
+           [ Customizing Look and Feel ]
++--------------------------------------------------+
+|  * Color Scheme:   litmux-color                  |
+|  * Shell prompt:   litmux-style                  |
+|  * Update LitMux:  litmux-upgrade                |
+|  * Remove LitMux:  litmux-purge                  |
++--------------------------------------------------+
 
