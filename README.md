@@ -32,7 +32,7 @@ DISABLE_AUTO_UPDATE=true
 
 ### Manual Updates
 
-If you'd like to upgrade at any point in time you just need to run:
+If you'd like to upgrade the shell and it's plugins at any point in time you just need to run:
 ```shell
 litmux-upgrade
 ```
