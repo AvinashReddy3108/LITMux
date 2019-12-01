@@ -124,7 +124,7 @@ if [ ! -f ~/.p10k.zsh ]; then
 sed -i "/.p10k.zsh/d" ~/.zshrc
 fi
 
-if ! grep -q "bash" "$SHELL"; then
+if ! grep -q "zsh" "$SHELL"; then
 exec zsh -l
 fi
 
