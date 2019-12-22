@@ -105,6 +105,18 @@ echo "Using existing custom color scheme for Termux."
 termux-reload-settings
 fi
 
+# Add new buttons to the Termux bottom bar.
+if [ ! -e ~/.termux/colors.properties ]; then
+show_banner
+echo "Adding extra buttons to Termux Keyboard..."
+cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/termux.properties" ~/.termux/termux.properties
+termux-reload-settings
+else
+show_banner
+echo "Using existing custom keyboard layout for Termux."
+termux-reload-settings
+fi
+
 # Replace the default welcome text with a customized one.
 cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/motd-lit" "$PREFIX/etc/motd"
 
