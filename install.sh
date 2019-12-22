@@ -106,7 +106,7 @@ termux-reload-settings
 fi
 
 # Add new buttons to the Termux bottom bar.
-if [ ! -e ~/.termux/colors.properties ]; then
+if [ ! -e ~/.termux/termux.properties ]; then
 show_banner
 echo "Adding extra buttons to Termux Keyboard..."
 cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/termux.properties" ~/.termux/termux.properties
