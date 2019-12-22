@@ -22,6 +22,9 @@ fi
 # Restores stock welcome text.
 cp -fr $HOME/.oh-my-zsh/custom/misc/LitMux/motd-default $PREFIX/etc/motd
 
+# Restore the extra bells and whistles of touch keyboard.
+rm -f ~/.termux/termux.properties
+
 # Purge Oh-My-ZSH stuff.
 rm -rf ~/.oh-my-zsh
 
