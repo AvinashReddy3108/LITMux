@@ -1,10 +1,10 @@
 # Project LitMux. (Basically Termux, but LIT AF.)
 ## Bored with plain old black and white Termux? Let's make it 🔥.
 
-This is a simple script for [Termux](https://play.google.com/store/apps/details?id=com.termux) to switch from boring BASH shell and use [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) along with some basic [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) on your device, as well as some color schemes (most are from [Gogh](https://github.com/Mayccoll/Gogh)). This also installs the fast ,powerful, and highly customizable [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH.
+This is a simple script for [Termux](https://play.google.com/store/apps/details?id=com.termux) to switch from boring BASH shell and use [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) along with some basic [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) on your device, as well as some color schemes (most are from [Gogh](https://github.com/Mayccoll/Gogh)). This also installs the fast, powerful, and highly customizable [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH.
 
 ## Requirements:
- - A device running Android 5.0 or above.
+ - A device running Android 5.0 or above. (Recommended to have Android 7.0+ coz of [this](https://www.reddit.com/r/termux/comments/dnzdbs/end_of_android56_support_on_20200101/))
  - Termux app, duh. (Install from [Google Play](https://play.google.com/store/apps/details?id=com.termux) or [F-Droid](https://f-droid.org/packages/com.termux/))
 
 
@@ -46,4 +46,5 @@ If you want to uninstall LitMux, just run `litmux-purge` from the command-line. 
 ## Credits/Thanks:
  - [Cabbagec](https://github.com/Cabbagec) for his [termux-ohmyzsh](https://github.com/Cabbagec/termux-ohmyzsh) script.
  - The contributors of the [ohmyzsh](https://ohmyz.sh/) community to maintain such an awesome project.
+ - Some of the sweet color schemes are from [Gogh](https://github.com/Mayccoll/Gogh), they deserve their kudos.
  - [romkatv](https://github.com/romkatv) for the awesome [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH.
