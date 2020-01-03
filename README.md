@@ -10,7 +10,7 @@ This is a simple script for [Termux](https://play.google.com/store/apps/details?
 
 ## Install:
 
-Installing this is as wasy as running the command below. (Recommended this on a clean Termux install)
+Installing this is as easy as running the command below. (Recommended this on a clean Termux install)
 
 ```shell
 sh -c "$(curl -fsSL https://git.io/Jei6P)"
