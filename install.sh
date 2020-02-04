@@ -16,7 +16,9 @@ echo ""
 
 git_force_clone_shallow () {
    if [ -d "$2" ]; then
-   rm -rf "$2"
+   cd "$2"
+   git reset --hard
+   git pull
    fi
    git clone --depth 1 "$1" "$2"
 }
