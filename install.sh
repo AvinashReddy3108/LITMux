@@ -49,7 +49,7 @@ termux-setup-storage
 
 # Updating package repositories and installing requirements.
 echo "Checking repositories for updated packages, please wait..."
-apt update > /dev/null
+apt -qq update
 
 show_banner
 echo "Installing required packages, please wait...."
