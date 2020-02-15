@@ -16,7 +16,7 @@ echo ""
 
 current_dir=$(pwd)
 
-git_force_clone_shallow () {
+git_handle_plugin_repo () {
    if [ -d "$2" ]; then
    cd "$2"
    git reset --hard
@@ -76,22 +76,22 @@ sed_handle_alias_zshrc "litmux-purge" "'~/.oh-my-zsh/custom/misc/LitMux/uninstal
 # Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
 show_banner
 echo "Installing 'Syntax Highlighting' addon for Oh-My-ZSH..."
-git_force_clone_shallow https://github.com/zsh-users/zsh-syntax-highlighting.git "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" > /dev/null
+git_handle_plugin_repo https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 sed_handle_plugin_zshrc "zsh-syntax-highlighting"
 
 # Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
 show_banner
 echo "Installing 'Custom Plugins Updater' addon for Oh-My-ZSH..."
-git_force_clone_shallow https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "~/.oh-my-zsh/custom/plugins/autoupdate" > /dev/null
+git_handle_plugin_repo https://github.com/TamCore/autoupdate-oh-my-zsh-plugins "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
 sed_handle_plugin_zshrc "autoupdate"
 
 # Cloning the LITMUX repo, to be handled by the updater.
-git_force_clone_shallow https://github.com/AvinashReddy3108/LitMux.git "~/.oh-my-zsh/custom/misc/LitMux" > /dev/null
+git_handle_plugin_repo https://github.com/AvinashReddy3108/LitMux.git "$HOME/.oh-my-zsh/custom/misc/LitMux"
 
 # Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
 show_banner
 echo "Installing 'Powerlevel10K' theme for ZSH..."
-git_force_clone_shallow https://github.com/romkatv/powerlevel10k.git "~/.oh-my-zsh/custom/themes/powerlevel10k" > /dev/null
+git_handle_plugin_repo https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 
 # Installing the Powerline font for Termux.
