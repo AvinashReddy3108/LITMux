@@ -79,7 +79,7 @@ echo "Installing 'Syntax Highlighting' addon for Oh-My-ZSH..."
 git_handle_plugin_repo https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 sed_handle_plugin_zshrc "zsh-syntax-highlighting"
 
-# Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
+# Installing "Auto Suggestions" addon for ZSH, and appending that to the plugins list.
 show_banner
 echo "Installing 'Auto Suggestions' addon for Oh-My-ZSH..."
 git_handle_plugin_repo https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
