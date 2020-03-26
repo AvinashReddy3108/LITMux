@@ -57,7 +57,7 @@ apt -qq update
 
 show_banner
 echo "Installing required packages, please wait...."
-apt install -y git zsh
+apt install -y git zsh dialog
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
