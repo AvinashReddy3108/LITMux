@@ -31,7 +31,7 @@ for colors in "$COLORS_DIR"/*.colors; do
     count=$(( count + 1 ))
     array[ $i ]=$j
     (( j++ ))
-    array[ ($i + 1) ]=$( echo "$colors" | awk -F'/' '{print $NF}' )
+    array[ ($i + 1) ]=$( echo -e "${colors%".colors"}" | awk -F'/' '{print $NF}' )
     (( i=(i+2) ))
 done
 
@@ -41,15 +41,13 @@ done
 
 # Build the menu with dynamic content
 TERMINAL=$(tty) # Gather current terminal session for appropriate redirection
-HEIGHT=20
-WIDTH=76
-CHOICE_HEIGHT=16
-BACKTITLE="https://github.com/AvinashReddy3108/LitMux"
+HEIGHT=25
+WIDTH=50
+CHOICE_HEIGHT=15
 TITLE="LITMUX - Spice up your Termux!"
 MENU="Choose a color scheme from the list below."
 
 CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE" \
                 --title "$TITLE" \
                 --menu "$MENU" \
                 $HEIGHT $WIDTH $CHOICE_HEIGHT \
