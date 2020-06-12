@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: mono-cyan
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/mono-cyan.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#003340
 color1=#00CCFF
 color2=#00CCFF

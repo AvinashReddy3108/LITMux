@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: mono-amber
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/mono-amber.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#402500
 color1=#FF9400
 color2=#FF9400

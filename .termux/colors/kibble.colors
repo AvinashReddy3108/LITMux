@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Kibble
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/kibble.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#4d4d4d
 color1=#c70031
 color2=#29cf13

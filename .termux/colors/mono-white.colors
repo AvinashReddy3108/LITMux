@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: mono-white
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/mono-white.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#3B3B3B
 color1=#FAFAFA
 color2=#FAFAFA

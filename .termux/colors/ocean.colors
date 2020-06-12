@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Ocean
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/ocean.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#990000
 color2=#00a600

@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Wombat
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/wombat.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#ff615a
 color2=#b1e969

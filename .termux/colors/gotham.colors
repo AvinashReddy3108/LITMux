@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: gotham
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/gotham.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#0a0f14
 color1=#c33027
 color2=#26a98b

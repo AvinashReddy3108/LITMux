@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Borland
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/borland.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#4f4f4f
 color1=#ff6c60
 color2=#a8ff60

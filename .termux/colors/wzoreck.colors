@@ -1,0 +1,25 @@
+# ===============================================================
+# Color Scheme: Wzoreck
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/wzoreck.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
+color0=#2E3436
+color1=#FC6386
+color2=#424043
+color3=#FCE94F
+color4=#FB976B
+color5=#75507B
+color6=#34E2E2
+color7=#FFFFFF
+color8=#989595
+color9=#FC6386
+color10=#A9DC76
+color11=#FCE94F
+color12=#FB976B
+color13=#AB9DF2
+color14=#34E2E2
+color15=#D1D1C0
+background=#424043
+foreground=#FCFCFA
+cursor=#FCFCFA

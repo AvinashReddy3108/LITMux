@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Flatland
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/flatland.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#1d1d19
 color1=#f18339
 color2=#9fd364

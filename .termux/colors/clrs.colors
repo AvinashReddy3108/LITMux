@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: CLRS
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/clrs.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#f8282a
 color2=#328a5d

@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Chalk
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/chalk.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#646464
 color1=#F58E8E
 color2=#A9D3AB

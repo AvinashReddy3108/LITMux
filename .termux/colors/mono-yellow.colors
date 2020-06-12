@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: mono-yellow
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/mono-yellow.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#403500
 color1=#FFD300
 color2=#FFD300

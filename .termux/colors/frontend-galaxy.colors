@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Frontend Galaxy
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/frontend-galaxy.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#f9555f
 color2=#21b089

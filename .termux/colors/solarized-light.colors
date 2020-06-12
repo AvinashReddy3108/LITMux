@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Solarized Light
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/solarized-light.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#073642
 color1=#DC322F
 color2=#859900
@@ -17,5 +22,4 @@ color14=#93A1A1
 color15=#FDF6E3
 background=#FDF6E3
 foreground=#657B83
-BOLD_COLOR=#586E75
 cursor=#657B83

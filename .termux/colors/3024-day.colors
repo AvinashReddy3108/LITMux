@@ -1,4 +1,10 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: 3024 Day
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/3024-day.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
+color0=#090300
 color1=#db2d20
 color2=#01a252
 color3=#fded02

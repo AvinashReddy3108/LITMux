@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Solarized Darcula
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/solarized-darcula.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#25292a
 color1=#f24840
 color2=#629655

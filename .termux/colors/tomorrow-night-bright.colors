@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Tomorrow Night Bright
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/tomorrow-night-bright.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#D54E53
 color2=#B9CA49

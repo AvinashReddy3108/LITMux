@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Ocean Dark
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/ocean-dark.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#4F4F4F
 color1=#AF4B57
 color2=#AFD383

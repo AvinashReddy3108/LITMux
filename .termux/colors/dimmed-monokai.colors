@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Dimmed Monokai
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/dimmed-monokai.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#3a3d43
 color1=#be3f48
 color2=#879a3b

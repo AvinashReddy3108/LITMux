@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Red Alert
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/red-alert.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#d62e4e
 color2=#71be6b

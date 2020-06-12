@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Frontend Delight
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/frontend-delight.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#242526
 color1=#f8511b
 color2=#565747

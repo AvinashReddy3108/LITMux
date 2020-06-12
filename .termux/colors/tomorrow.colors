@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Tomorrow
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/tomorrow.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#C82828
 color2=#718C00

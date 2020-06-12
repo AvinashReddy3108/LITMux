@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Solarized Dark Higher Contrast
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/solarized-dark-higher-contrast.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#002831
 color1=#d11c24
 color2=#6cbe6c

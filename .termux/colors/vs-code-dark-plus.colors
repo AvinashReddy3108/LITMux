@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: VS Code Dark+
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/vs-code-dark-plus.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#6A787A
 color1=#E9653B
 color2=#39E9A8

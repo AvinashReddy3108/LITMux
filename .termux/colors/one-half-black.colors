@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: One Half Black
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/one-half-black.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#282c34
 color1=#e06c75
 color2=#98c379

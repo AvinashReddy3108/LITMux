@@ -1,17 +1,42 @@
 #!/bin/bash
 # Credits: https://www.unix.com/303021070-post6.html
 
+# Credits: https://gist.github.com/TrinityCoder/911059c83e5f7a351b785921cf7ecdaa#how-to-do-it
+print_centered() {
+     [[ $# == 0 ]] && return 1
+
+     declare -i TERM_COLS="$(tput cols)"
+     declare -i str_len="${#1}"
+     [[ $str_len -ge $TERM_COLS ]] && {
+          echo "$1";
+          return 0;
+     }
+
+     declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
+     [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
+     filler=""
+     for (( i = 0; i < filler_len; i++ )); do
+          filler="${filler}${ch}"
+     done
+
+     printf "%s%s%s" "$filler" "$1" "$filler"
+     [[ $(( (TERM_COLS - str_len) % 2 )) -ne 0 ]] && printf "%s" "${ch}"
+     printf "\n"
+
+     return 0
+}
+
 clear
-echo "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
-echo "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
-echo "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
-echo "██║     ██║   ██║   ██║╚██╔╝██║██║   ██║ ██╔██╗ ";
-echo "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
-echo "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
-echo "";
-echo "   Preparing the list of themes, please wait.      ";
-echo ""
-echo ""
+print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
+print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
+print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
+print_centered "██║     ██║   ██║   ██║╚██╔╝██║██║   ██║ ██╔██╗ ";
+print_centered "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
+print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
+print_centered "";
+print_centered "   Preparing the list of themes, please wait.      ";
+print_centered ""
+print_centered ""
 
 COLORS_DIR="$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors"
 

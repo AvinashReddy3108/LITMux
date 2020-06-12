@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Zenburn
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/zenburn.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#4d4d4d
 color1=#705050
 color2=#60b48a

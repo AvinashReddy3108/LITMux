@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Pali
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/pali.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#0a0a0a
 color1=#ab8f74
 color2=#74ab8f

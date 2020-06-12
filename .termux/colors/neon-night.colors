@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: neon-night
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/neon-night.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#20242d
 color1=#FF8E8E
 color2=#7EFDD0

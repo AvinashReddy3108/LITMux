@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Gruvbox Dark
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/gruvbox-dark.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#282828
 color1=#cc241d
 color2=#98971a

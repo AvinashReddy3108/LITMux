@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Terminix Dark
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/terminix-dark.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#282a2e
 color1=#a54242
 color2=#a1b56c

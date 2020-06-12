@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Colorcli
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/colorcli.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#D70000
 color2=#5FAF00
@@ -18,3 +23,6 @@ color15=#FFFFFF
 background=#FFFFFF
 foreground=#005F87
 cursor=#005F87
+HIGHLIGHT_FG_COLOR=#0087AF
+HIGHLIGHT_BG_COLOR=#BCBCBC
+USE_SYS_TRANSPARENCY=false

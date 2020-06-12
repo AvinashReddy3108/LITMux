@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Molokai
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/molokai.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#1b1d1e
 color1=#7325FA
 color2=#23E298

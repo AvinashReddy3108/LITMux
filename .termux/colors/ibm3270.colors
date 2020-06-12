@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: ibm3270
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/ibm3270.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#222222
 color1=#F01818
 color2=#24D830

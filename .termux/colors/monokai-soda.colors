@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Monokai Soda
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/monokai-soda.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#1a1a1a
 color1=#f4005f
 color2=#98e024

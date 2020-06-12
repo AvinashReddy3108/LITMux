@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: mono-red
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/mono-red.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#401200
 color1=#FF3600
 color2=#FF3600

@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Soft Server
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/soft-server.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#a2686a
 color2=#9aa56a

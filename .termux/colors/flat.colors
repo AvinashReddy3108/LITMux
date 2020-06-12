@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Flat
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/flat.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#2c3e50
 color1=#c0392b
 color2=#27ae60

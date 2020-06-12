@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: C64
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/c64.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#090300
 color1=#883932
 color2=#55a049

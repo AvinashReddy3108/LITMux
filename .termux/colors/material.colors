@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Material
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/material.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#073641
 color1=#EB606B
 color2=#C3E88D

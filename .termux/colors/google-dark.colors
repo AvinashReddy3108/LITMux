@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: base16: Google (dark)
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/google-dark.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#1D1F21
 color1=#CC342B
 color2=#198844

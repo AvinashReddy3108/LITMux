@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Thayer Bright
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/thayer-bright.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#1b1d1e
 color1=#f92672
 color2=#4df840

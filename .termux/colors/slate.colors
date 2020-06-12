@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Slate
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/slate.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#222222
 color1=#e2a8bf
 color2=#81d778

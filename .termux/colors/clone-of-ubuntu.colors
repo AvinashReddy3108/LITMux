@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Clone of Ubuntu
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/clone-of-ubuntu.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#2E3436
 color1=#CC0000
 color2=#4E9A06

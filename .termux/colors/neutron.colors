@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Neutron
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/neutron.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#23252b
 color1=#b54036
 color2=#5ab977

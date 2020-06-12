@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: SynthWave
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/synthwave.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#011627
 color1=#fe4450
 color2=#72f1b8
@@ -17,4 +22,4 @@ color14=#03edf9
 color15=#ffffff
 background=#262335
 foreground=#ffffff
-cursor=03edf9
+cursor=#03edf9

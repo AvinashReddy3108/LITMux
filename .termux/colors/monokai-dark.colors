@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Monokai Dark
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/monokai-dark.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#75715e
 color1=#f92672
 color2=#a6e22e

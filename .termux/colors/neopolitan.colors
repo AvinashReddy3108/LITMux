@@ -1,4 +1,9 @@
-# Credits: https://github.com/Mayccoll/Gogh/tree/master/themes
+# ===============================================================
+# Color Scheme: Neopolitan
+# Source: https://github.com/Mayccoll/Gogh/blob/master/themes/neopolitan.sh
+# Credits: https://github.com/Mayccoll/Gogh/graphs/contributors
+# ===============================================================
+
 color0=#000000
 color1=#800000
 color2=#61ce3c
