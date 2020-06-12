@@ -34,7 +34,7 @@ print_centered "██║     ██║   ██║   ██║╚██╔╝�
 print_centered "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
-print_centered "   Preparing the list of themes, please wait.      ";
+print_centered "   Preparing the list of themes, please wait!    ";
 print_centered ""
 print_centered ""
 
