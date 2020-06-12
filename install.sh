@@ -14,7 +14,7 @@ print_centered() {
     declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
     [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
     filler=""
-    for (( i = 0; i < filler_len; i++ )); do
+    for (( i = 0; i < filler_len; i ++ )); do
         filler="${filler}${ch}"
     done
 
