@@ -103,17 +103,12 @@ install_pkg git zsh dialog tsu proot
 
 show_banner
 echo "Installing pac(man?) wrapper for Termux..."
-sudo curl -o $PREFIX/bin/pacapt https://raw.githubusercontent.com/icy/pacapt/ng/pacapt
+sudo curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacapt
 sudo chmod 755 $PREFIX/bin/pacapt
 sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
 
 # BONUS: pac, shorthand for pacman :P
 sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pac || true
-
-# Edge case: cURL's cache of the file.
-if [ -f $PREFIX/bin/pacapt.curl ]; then
-    rm -f $PREFIX/bin/pacapt.curl
-fi
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
