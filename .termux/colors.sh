@@ -27,6 +27,7 @@ print_centered() {
 }
 
 clear
+tput civis
 print_centered ""
 print_centered ""
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
@@ -94,3 +95,4 @@ if [ $? -eq 0 ]; then
 else
     clear
 fi
+tput cnorm

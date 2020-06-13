@@ -26,6 +26,7 @@ print_centered() {
 }
 
 clear
+tput civis
 print_centered ""
 print_centered ""
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
@@ -78,3 +79,4 @@ do
         printf "${RED}%s${NORMAL}\n" "There was an error updating $plugin_name. Try again later?"
     fi
 done
+tput cnorm

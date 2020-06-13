@@ -26,6 +26,9 @@ print_centered() {
 }
 
 clear
+tput civis
+print_centered "";
+print_centered "";
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
 print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
 print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
@@ -34,8 +37,9 @@ print_centered "███████╗██║   ██║   ██║ ╚═
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
 print_centered "      Preparing to uninstall, please wait!      ";
+print_centered "";
+print_centered "";
 sleep 3
-
 clear
 
 # Are you sure about that?
@@ -85,4 +89,5 @@ print_centered "███████╗██║   ██║   ██║ ╚═
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
 print_centered "     Uninstall complete, sad to say goodbye!    ";
+tput cnorm
 exit 0

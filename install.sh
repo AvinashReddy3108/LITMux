@@ -54,6 +54,7 @@ install_pkg() {
 
 # We need this for 'tput'
 install_pkg ncurses-utils
+tput civis
 
 git_handle_plugin_repo () {
     if [ -d "$2" ]; then
@@ -194,4 +195,5 @@ if ! grep -q "zsh" "$SHELL"; then
     exec zsh -l
 fi
 
+tput cnorm
 exit
