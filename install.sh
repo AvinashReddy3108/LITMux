@@ -42,6 +42,11 @@ show_banner() {
 }
 
 current_dir=$(pwd)
+clear
+
+# Updating package repositories.
+echo "Checking repositories for updated packages, please wait..."
+pkg upgrade
 
 install_pkg() {
     for package in "$@"
