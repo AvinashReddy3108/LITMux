@@ -101,6 +101,15 @@ show_banner
 echo "Installing required packages, please wait...."
 install_pkg git zsh dialog tsu proot
 
+show_banner
+echo "Installing pac(man?) wrapper for Termux..."
+sudo curl https://github.com/icy/pacapt/raw/ng/pacapt > $PREFIX/bin/pacapt
+sudo chmod 755 $PREFIX/bin/pacapt
+sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
+
+# BONUS: pac, shorthand for pacman :P
+sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pac || true
+
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
 echo "Installing Oh-My-ZSH..."
@@ -187,7 +196,7 @@ print_centered "██║     ██║   ██║   ██║╚██╔╝�
 print_centered "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
-print_centered "      Installation Complete, gimme cookies!     ";
+print_centered "     Installation Complete, gimme cookies :P    ";
 print_centered ""
 print_centered ""
 sleep 3
