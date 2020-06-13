@@ -40,8 +40,7 @@ print_centered "   Preparing the list of themes, please wait!    ";
 print_centered ""
 print_centered ""
 
-#COLORS_DIR="$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors"
-COLORS_DIR=./colors
+COLORS_DIR="$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors"
 
 i=1 # Index counter for adding to array.
 j=1 # Option menu value generator.
