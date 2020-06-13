@@ -58,6 +58,10 @@ rm -f ~/.termux/termux.properties
 # Purge Oh-My-ZSH stuff.
 rm -rf ~/.oh-my-zsh
 
+# Remove pacman wrapper.
+rm -f $PREFIX/bin/pacapt
+rm -f $PREFIX/bin/pacman
+
 # Restores stock color scheme.
 rm -f ~/.termux/colors.properties
 
@@ -81,6 +85,8 @@ pkg uninstall zsh
 termux-reload-settings
 
 # Goodbye.
+print_centered "";
+print_centered "";
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
 print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
 print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
@@ -89,5 +95,7 @@ print_centered "███████╗██║   ██║   ██║ ╚═
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
 print_centered "     Uninstall complete, sad to say goodbye!    ";
+print_centered "";
+print_centered "";
 tput cnorm
 exit 0

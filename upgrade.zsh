@@ -40,10 +40,16 @@ print_centered "      Preparing to upgrade, please wait !!      ";
 print_centered ""
 print_centered ""
 sleep 3
+clear
 
 # Upgrade Oh-My-ZSH using native updater.
 echo "Upgrading Oh-My-ZSH, please wait.."
 $ZSH/tools/upgrade.sh > /dev/null
+
+echo "Upgrading pacman wrapper, please wait!"
+sudo curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacapt
+sudo chmod 755 $PREFIX/bin/pacapt
+sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
 
 # Upgrade all ZSH custom plugins and themes.
 # A modified version of @TamCore's autoupdate plugin for ZSH.
