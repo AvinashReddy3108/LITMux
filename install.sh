@@ -103,7 +103,7 @@ install_pkg git zsh dialog tsu proot
 
 show_banner
 echo "Installing pac(man?) wrapper for Termux..."
-sudo curl -O $PREFIX/bin/pacapt https://raw.githubusercontent.com/icy/pacapt/ng/pacapt
+sudo curl -o $PREFIX/bin/pacapt https://raw.githubusercontent.com/icy/pacapt/ng/pacapt
 sudo chmod 755 $PREFIX/bin/pacapt
 sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
 
