@@ -14,7 +14,7 @@ print_centered() {
     declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
     [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
     filler=""
-    for (( i = 0; i < filler_len; i ++ )); do
+    for (( i = 0; i < filler_len; i++ )); do
         filler="${filler}${ch}"
     done
 
@@ -27,6 +27,8 @@ print_centered() {
 
 show_banner() {
     clear
+    print_centered ""
+    print_centered ""
     print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
     print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
     print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
@@ -56,7 +58,7 @@ install_pkg ncurses-utils
 git_handle_plugin_repo () {
     if [ -d "$2" ]; then
         cd "$2"
-        git pull --rebase --stat origin master
+        git pull --ff-only
         cd $current_dir
     else
         git clone --depth 1 "$1" "$2"
@@ -91,7 +93,7 @@ fi
 
 show_banner
 echo "Installing required packages, please wait...."
-install_pkg git zsh dialog
+install_pkg git zsh dialog tsu proot
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
@@ -170,6 +172,8 @@ cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/motd-lit" "$PREFIX/etc/motd"
 
 # Run a ZSH shell, opens the p10k config wizard if not set up already.
 clear
+print_centered ""
+print_centered ""
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
 print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
 print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
@@ -178,6 +182,8 @@ print_centered "███████╗██║   ██║   ██║ ╚═
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
 print_centered "      Installation Complete, gimme cookies!     ";
+print_centered ""
+print_centered ""
 sleep 3
 
 if [ ! -f ~/.p10k.zsh ]; then

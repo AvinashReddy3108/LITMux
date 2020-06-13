@@ -26,6 +26,8 @@ print_centered() {
 }
 
 clear
+print_centered ""
+print_centered ""
 print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
 print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
 print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
@@ -34,16 +36,16 @@ print_centered "███████╗██║   ██║   ██║ ╚═
 print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
 print_centered "";
 print_centered "      Preparing to upgrade, please wait !!      ";
+print_centered ""
+print_centered ""
 sleep 3
-
-clear
 
 # Upgrade Oh-My-ZSH using native updater.
 echo "Upgrading Oh-My-ZSH, please wait.."
 $ZSH/tools/upgrade.sh > /dev/null
 
 # Upgrade all ZSH custom plugins and themes.
-# A forced version of TamCore's autoinstall plugin for ZSH.
+# A modified version of @TamCore's autoupdate plugin for ZSH.
 # https://github.com/TamCore/autoupdate-oh-my-zsh-plugins/blob/master/autoupdate.plugin.zsh
 
 if which tput >/dev/null 2>&1; then
@@ -69,7 +71,7 @@ do
     cd "${p}"
     plugin_name=$(basename "$p")
 
-    if git pull --rebase --stat origin master
+    if git pull --ff-only
     then
         printf "${BLUE}%s${NORMAL}\n" "Hooray! $plugin_name has been updated and/or is at the current version."
     else
