@@ -103,12 +103,17 @@ install_pkg git zsh dialog tsu proot
 
 show_banner
 echo "Installing pac(man?) wrapper for Termux..."
-sudo curl https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacapt
+sudo curl -O $PREFIX/bin/pacapt https://raw.githubusercontent.com/icy/pacapt/ng/pacapt
 sudo chmod 755 $PREFIX/bin/pacapt
 sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
 
 # BONUS: pac, shorthand for pacman :P
 sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pac || true
+
+# Edge case: cURL's cache of the file.
+if [ -f $PREFIX/bin/pacapt.curl ]; then
+    rm -f $PREFIX/bin/pacapt.curl
+fi
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
@@ -152,14 +157,14 @@ git_handle_plugin_repo "https://github.com/romkatv/powerlevel10k.git" "$HOME/.oh
 sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
 
 # Installing the Powerline font for Termux.
-if [ ! -e ~/.termux/font.ttf ]; then
+if [ ! -f ~/.termux/font.ttf ]; then
     show_banner
     echo "Installing the Powerline patched font for Termux..."
     curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' > /dev/null
 fi
 
 # Set 'Tango' as the default color scheme for the shell.
-if [ ! -e ~/.termux/colors.properties ]; then
+if [ ! -f ~/.termux/colors.properties ]; then
     show_banner
     echo "Changing default color scheme for Termux..."
     cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors/_base.colors" ~/.termux/colors.properties
@@ -171,7 +176,7 @@ else
 fi
 
 # Add new buttons to the Termux bottom bar.
-if [ ! -e ~/.termux/termux.properties ]; then
+if [ ! -f ~/.termux/termux.properties ]; then
     show_banner
     echo "Adding extra buttons to Termux Keyboard..."
     cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/termux.properties" ~/.termux/termux.properties
