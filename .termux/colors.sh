@@ -44,6 +44,7 @@ COLORS_DIR="$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors"
 
 i=1 # Index counter for adding to array.
 j=1 # Option menu value generator.
+count=1 # The 'actual' array of files.
 
 # Dynamic dialogs require an array that has a staggered structure
 # array[1]=1
@@ -52,16 +53,13 @@ j=1 # Option menu value generator.
 # array[4]=Second_Menu_Option
 
 declare -a array
-declare -a colors_array
-
-for color_scheme in "$COLORS_DIR"/*.colors; do
-    scheme_name=$(awk '{if(NR==2) print $0}' $color_scheme | sed -e 's/# Color Scheme: //')
-    scheme_base=$(basename $color_scheme)
-    scheme_entry="$scheme_name [$(echo $scheme_base | sed -e 's/.colors//')]"
-    colors_array=("${colors_array[@]}" "$scheme_base")
+for colors in "$COLORS_DIR"/*.colors; do
+    scheme_name=$(awk '{if(NR==2) print $0}' $colors | sed -e 's/# Color Scheme: //')
+    colors_name[count]=$( basename $colors )
+    count=$(( count + 1 ))
     array[ $i ]=$j
     (( j++ ))
-    array[ ($i + 1) ]=$scheme_entry
+    array[ ($i + 1) ]="$scheme_name [$(echo $( basename $colors ) | sed -e 's/.colors//')]"
     (( i=(i+2) ))
 done
 
@@ -71,9 +69,9 @@ done
 
 # Build the menu with dynamic content
 TERMINAL=$(tty) # Gather current terminal session for appropriate redirection
-HEIGHT=33
-WIDTH=66
-CHOICE_HEIGHT=30
+HEIGHT=24
+WIDTH=48
+CHOICE_HEIGHT=12
 TITLE="LITMUX - Spice up your Termux!"
 MENU="Choose a color scheme from the list below."
 
@@ -86,7 +84,7 @@ CHOICE=$(dialog --clear \
 
 if [ $? -eq 0 ]; then
     clear
-    echo "Applying color scheme: ${colors_array[$CHOICE]}"
+    echo "Applying color scheme: ${colors_name[$CHOICE]}"
     if cp -fr "$COLORS_DIR/${colors_name[$CHOICE]}" "$HOME/.termux/colors.properties"; then
         termux-reload-settings
         clear
