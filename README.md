@@ -13,7 +13,7 @@ This is a simple script for [Termux](https://play.google.com/store/apps/details?
 Installing this is as easy as running the command below. (Recommended this on a clean Termux install)
 
 ```shell
-sh -c "$(curl -fsSL https://git.io/Jei6P)"
+bash -c "$(curl -fsSL https://git.io/Jei6P)"
 ```
 
 ## Getting Updates:
