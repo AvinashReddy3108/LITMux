@@ -55,7 +55,7 @@ count=1 # The 'actual' array of files.
 
 declare -a array
 for colors in "$COLORS_DIR"/*.colors; do
-    scheme_name=$(sed '2q;d' "$FILE" | cut -c 16-)
+    scheme_name=$(sed '2q;d' "$colors" | cut -c 16-)
     colors_name[count]=$(basename $colors)
     count=$(( count + 1 ))
     array[ $i ]=$j
