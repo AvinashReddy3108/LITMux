@@ -93,7 +93,7 @@ show_banner
 sleep 3
 
 # Giving Storage permision to Termux App.
-if [ -d ~/storage ]; then
+if [ ! -d ~/storage ]; then
     termux-setup-storage
 fi
 
