@@ -55,17 +55,16 @@ count=1 # The 'actual' array of files.
 
 declare -a array
 for colors in "$COLORS_DIR"/*.colors; do
-    scheme_name=$(sed '2q;d' "$colors" | cut -c 16-)
-    colors_name[count]=$(basename $colors)
-    count=$(( count + 1 ))
-    array[ $i ]=$j
-    (( j++ ))
-    array[ ($i + 1) ]="$(basename $colors .colors)|[$scheme_name]"
-    (( i=(i+2) ))
+    scheme_name=$(sed '2q;d' "$colors"|cut -c 16-)
+    colors_name[count]=$(basename "$colors")
+    count=$((count + 1))
+    array[$i]=$j
+    ((j++))
+    array[($i + 1)]="$(basename $colors .colors)|[$scheme_name]"
+    ((i=(i+2)))
 done
 
 # Build the menu with dynamic content
-TERMINAL=$(tty) # Gather current terminal session for appropriate redirection
 TITLE="LITMUX - Spice up your Termux!"
 MENU="Choose a color scheme from the list below."
 
@@ -75,7 +74,7 @@ CHOICE=$(dialog --clear --no-shadow \
                 --menu "$MENU" \
                 -1 -1 0 \
                 "${array[@]}" \
-                2>&1 >"$TERMINAL")
+                2>&1 >"$(tty)")
 
 if [ $? -eq 0 ]; then
     clear
