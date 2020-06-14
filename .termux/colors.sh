@@ -70,16 +70,13 @@ done
 
 # Build the menu with dynamic content
 TERMINAL=$(tty) # Gather current terminal session for appropriate redirection
-HEIGHT=24
-WIDTH=48
-CHOICE_HEIGHT=12
 TITLE="LITMUX - Spice up your Termux!"
 MENU="Choose a color scheme from the list below."
 
 CHOICE=$(dialog --clear \
                 --title "$TITLE" \
                 --menu "$MENU" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                0 0 0 \
                 "${array[@]}" \
                 2>&1 >"$TERMINAL")
 
