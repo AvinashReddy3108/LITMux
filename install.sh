@@ -49,29 +49,31 @@ echo "Checking repositories for updated packages, please wait..."
 pkg upgrade
 
 install_pkg() {
+    pkgs=()
     for package in "$@"
     do
         if ! pkg list-installed 2> /dev/null | grep -q "$package"; then
-            pkg install "$package"
+            pkgs+=($package)
         fi
     done
+    pkg install ${pkgs[@]}
 }
 
 # We need this for 'tput'
 install_pkg ncurses-utils
 tput civis
 
-git_handle_plugin_repo () {
+git_handle_plugin_repo() {
     if [ -d "$2" ]; then
-        cd "$2"
+        cd "$2" || exit
         git pull --ff-only
-        cd $current_dir
+        cd "$current_dir" || exit
     else
         git clone --depth 1 "$1" "$2"
     fi
 }
 
-sed_handle_plugin_zshrc () {
+sed_handle_plugin_zshrc() {
     if grep "plugins=" ~/.zshrc | sed -n 2p | grep "$1" ; then
         echo "The ZSH plugin '$1' is already installed in the .zshrc file."
     else
@@ -79,7 +81,7 @@ sed_handle_plugin_zshrc () {
     fi
 }
 
-sed_handle_alias_zshrc () {
+sed_handle_alias_zshrc() {
     if grep "^alias $1=*" ~/.zshrc ; then
         true
     else
@@ -99,13 +101,12 @@ fi
 
 show_banner
 echo "Installing required packages, please wait...."
-install_pkg git zsh dialog tsu proot
+install_pkg git zsh dialog
 
 show_banner
 echo "Installing pacman wrapper for Termux..."
-sudo curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacapt
-sudo chmod 755 $PREFIX/bin/pacapt
-sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
+curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > "$PREFIX"/bin/pacman
+chmod +x "$PREFIX"/bin/pacapt
 
 # Installing Oh My ZSH as a replacement of BASH.
 show_banner
@@ -160,11 +161,9 @@ if [ ! -f ~/.termux/colors.properties ]; then
     show_banner
     echo "Changing default color scheme for Termux..."
     cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors/_base.colors" ~/.termux/colors.properties
-    termux-reload-settings
 else
     show_banner
     echo "Using existing custom color scheme for Termux."
-    termux-reload-settings
 fi
 
 # Add new buttons to the Termux bottom bar.
@@ -172,15 +171,13 @@ if [ ! -f ~/.termux/termux.properties ]; then
     show_banner
     echo "Adding extra buttons to Termux Keyboard..."
     cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/termux.properties" ~/.termux/termux.properties
-    termux-reload-settings
 else
     show_banner
     echo "Using existing custom keyboard layout for Termux."
-    termux-reload-settings
 fi
 
-# Replace the default welcome text with a customized one.
-cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/motd-lit" "$PREFIX/etc/motd"
+# Reload Termux settings.
+termux-reload-settings
 
 # Run a ZSH shell, opens the p10k config wizard if not set up already.
 clear

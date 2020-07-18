@@ -47,9 +47,8 @@ echo "Upgrading Oh-My-ZSH, please wait.."
 $ZSH/tools/upgrade.sh > /dev/null
 
 echo "Upgrading pacman wrapper, please wait!"
-sudo curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacapt
-sudo chmod 755 $PREFIX/bin/pacapt
-sudo ln -sv $PREFIX/bin/pacapt $PREFIX/bin/pacman || true
+curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > $PREFIX/bin/pacman
+chmod +x $PREFIX/bin/pacapt
 
 # Upgrade all ZSH custom plugins and themes.
 # A modified version of @TamCore's autoupdate plugin for ZSH.

@@ -3,27 +3,27 @@
 
 # Credits: https://gist.github.com/TrinityCoder/911059c83e5f7a351b785921cf7ecdaa#how-to-do-it
 print_centered() {
-     [[ $# == 0 ]] && return 1
+    [[ $# == 0 ]] && return 1
 
-     declare -i TERM_COLS="$(tput cols)"
-     declare -i str_len="${#1}"
-     [[ $str_len -ge $TERM_COLS ]] && {
-          echo "$1";
-          return 0;
-     }
+    declare -i TERM_COLS="$(tput cols)"
+    declare -i str_len="${#1}"
+    [[ $str_len -ge $TERM_COLS ]] && {
+        echo "$1";
+        return 0;
+    }
 
-     declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
-     [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
-     filler=""
-     for (( i = 0; i < filler_len; i++ )); do
-          filler="${filler}${ch}"
-     done
+    declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
+    [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
+    filler=""
+    for (( i = 0; i < filler_len; i++ )); do
+        filler="${filler}${ch}"
+    done
 
-     printf "%s%s%s" "$filler" "$1" "$filler"
-     [[ $(( (TERM_COLS - str_len) % 2 )) -ne 0 ]] && printf "%s" "${ch}"
-     printf "\n"
+    printf "%s%s%s" "$filler" "$1" "$filler"
+    [[ $(( (TERM_COLS - str_len) % 2 )) -ne 0 ]] && printf "%s" "${ch}"
+    printf "\n"
 
-     return 0
+    return 0
 }
 
 clear
@@ -60,7 +60,7 @@ for colors in "$COLORS_DIR"/*.colors; do
     count=$((count + 1))
     array[$i]=$j
     ((j++))
-    array[($i + 1)]="$(basename $colors .colors)|[$scheme_name]"
+    array[($i + 1)]="$(basename "$colors" .colors)|[$scheme_name]"
     ((i=(i+2)))
 done
 
@@ -69,12 +69,12 @@ TITLE="LITMUX - Spice up your Termux!"
 MENU="Choose a color scheme from the list below."
 
 CHOICE=$(dialog --clear --no-shadow \
-                --column-separator "|" \
-                --title "$TITLE" \
-                --menu "$MENU" \
-                -1 -1 0 \
-                "${array[@]}" \
-                2>&1 >"$(tty)")
+        --column-separator "|" \
+        --title "$TITLE" \
+        --menu "$MENU" \
+        -1 -1 0 \
+        "${array[@]}" \
+    2>&1 >"$(tty)")
 
 if [ $? -eq 0 ]; then
     clear

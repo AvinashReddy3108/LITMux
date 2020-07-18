@@ -49,9 +49,6 @@ if [ "$confirmation" != y ] && [ "$confirmation" != Y ]; then
     exit
 fi
 
-# Restores stock welcome text.
-cp -fr $HOME/.oh-my-zsh/custom/misc/LitMux/motd-default $PREFIX/etc/motd
-
 # Restore the extra bells and whistles of touch keyboard.
 rm -f ~/.termux/termux.properties
 
@@ -59,8 +56,7 @@ rm -f ~/.termux/termux.properties
 rm -rf ~/.oh-my-zsh
 
 # Remove pacman wrapper.
-rm -f $PREFIX/bin/pacapt
-rm -f $PREFIX/bin/pacman
+rm -f "$PREFIX"/bin/pacman
 
 # Restores stock color scheme.
 rm -f ~/.termux/colors.properties
@@ -73,7 +69,7 @@ rm -f ~/.zshrc.pre-oh-my-zsh
 rm -f ~/.zshrc.omz-uninstalled*
 rm -f ~/.shell.pre-oh-my-zsh
 rm -f ~/.p10k.zsh*
-rm -f $PREFIX/tmp/.zshrc*
+rm -f "$PREFIX"/tmp/.zshrc*
 
 # Sets BASH as the default shell
 chsh -s bash
