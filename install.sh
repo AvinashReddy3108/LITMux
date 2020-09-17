@@ -12,7 +12,7 @@ if [ ! -d ~/storage ]; then
     sleep 2
 fi
 
-if [ ! -f ~/.zshrc ]; then
+if [ -f ~/.zshrc ]; then
     echo -n -e "Backing up current ZSH configuration. \033[0K\r"
     mkdir -p ~/storage/LITMux/backups
     mv ~/.zshrc ~/storage/LITMux/backup/zshrc.bak
