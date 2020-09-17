@@ -1,207 +1,103 @@
 #!/usr/bin/env bash
 
-# Credits: https://gist.github.com/TrinityCoder/911059c83e5f7a351b785921cf7ecdaa#how-to-do-it
-print_centered() {
-    [[ $# == 0 ]] && return 1
-
-    declare -i TERM_COLS="$(tput cols)"
-    declare -i str_len="${#1}"
-    [[ $str_len -ge $TERM_COLS ]] && {
-        echo "$1";
-        return 0;
-    }
-
-    declare -i filler_len="$(( (TERM_COLS - str_len) / 2 ))"
-    [[ $# -ge 2 ]] && ch="${2:0:1}" || ch=" "
-    filler=""
-    for (( i = 0; i < filler_len; i++ )); do
-        filler="${filler}${ch}"
-    done
-
-    printf "%s%s%s" "$filler" "$1" "$filler"
-    [[ $(( (TERM_COLS - str_len) % 2 )) -ne 0 ]] && printf "%s" "${ch}"
-    printf "\n"
-
-    return 0
-}
-
-show_banner() {
-    clear
-    print_centered ""
-    print_centered ""
-    print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
-    print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
-    print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
-    print_centered "██║     ██║   ██║   ██║╚██╔╝██║██║   ██║ ██╔██╗ ";
-    print_centered "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
-    print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
-    print_centered "";
-    print_centered "      Ditch the boring BASH and get LIT !!      ";
-    print_centered ""
-    print_centered ""
-}
-
-current_dir=$(pwd)
-clear
-
-# Updating package repositories.
-echo "Checking repositories for updated packages, please wait..."
-pkg upgrade
-
-install_pkg() {
-    pkgs=()
-    for package in "$@"
-    do
-        if ! pkg list-installed 2> /dev/null | grep -q "$package"; then
-            pkgs+=($package)
-        fi
-    done
-    pkg install ${pkgs[@]}
-}
-
-# We need this for 'tput'
-install_pkg ncurses-utils
-tput civis
-
-git_handle_plugin_repo() {
-    if [ -d "$2" ]; then
-        cd "$2" || exit
-        git pull --ff-only
-        cd "$current_dir" || exit
-    else
-        git clone --depth 1 "$1" "$2"
-    fi
-}
-
-sed_handle_plugin_zshrc() {
-    if grep "plugins=" ~/.zshrc | sed -n 2p | grep "$1" ; then
-        echo "The ZSH plugin '$1' is already installed in the .zshrc file."
-    else
-        sed -i "s/\(^plugins=([^)]*\)/\1 $1/" ~/.zshrc
-    fi
-}
-
-sed_handle_alias_zshrc() {
-    if grep "^alias $1=*" ~/.zshrc ; then
-        true
-    else
-        sed -i "/^alias $1=*/d" ~/.zshrc
-        echo "alias $1=$2" >> ~/.zshrc
-    fi
-}
-
-# Welcome.
-show_banner
-sleep 3
+# Updating package repositories and installing packages.
+echo -n -e "Syncing repositories and installing packages. \033[0K\r"
+(pkg update && pkg install -y git zsh) &> /dev/null
+sleep 2
 
 # Giving Storage permision to Termux App.
 if [ ! -d ~/storage ]; then
+    echo -n -e "Setting up storage access for Termux. \033[0K\r"
     termux-setup-storage
+    sleep 2
 fi
 
-show_banner
-echo "Installing required packages, please wait...."
-install_pkg git zsh dialog
+if [ ! -f ~/.zshrc ]; then
+    echo -n -e "Backing up current ZSH configuration. \033[0K\r"
+    mkdir -p ~/storage/LITMux/backups
+    mv ~/.zshrc ~/storage/LITMux/backup/zshrc.bak
+    sleep 2
+fi
 
-show_banner
-echo "Installing pacman wrapper for Termux..."
-curl -fsSL https://raw.githubusercontent.com/icy/pacapt/ng/pacapt > "$PREFIX"/bin/pacman
-chmod +x "$PREFIX"/bin/pacapt
+# Installing ZInit.
+echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
+(echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
+sleep 2
 
-# Installing Oh My ZSH as a replacement of BASH.
-show_banner
-echo "Installing Oh-My-ZSH..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended" > /dev/null
-
-# Changing default shell to ZSH, goodbye boring BASH.
+# Changing default shell to ZSH.
 chsh -s zsh
 
-# Adding aliases for LITMUX stuff.
-sed_handle_alias_zshrc "litmux-color" "'~/.oh-my-zsh/custom/misc/LitMux/.termux/colors.sh'"
-sed_handle_alias_zshrc "litmux-style" "'p10k configure'"
-sed_handle_alias_zshrc "litmux-upgrade" "'~/.oh-my-zsh/custom/misc/LitMux/upgrade.zsh'"
-sed_handle_alias_zshrc "litmux-purge" "'~/.oh-my-zsh/custom/misc/LitMux/uninstall.sh'"
+# Syntax highlighting, completions and suggestions.
+echo -n -e "Setting up Syntax highlighting, completions and auto-suggestions for ZInit. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
 
-# Installing "Syntax Highlighting" addon for ZSH, and appending that to the plugins list.
-show_banner
-echo "Installing 'Syntax Highlighting' addon for Oh-My-ZSH..."
-git_handle_plugin_repo "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-sed_handle_plugin_zshrc "zsh-syntax-highlighting"
+# Syntax highlighting, completions and auto-suggestions.
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+EOF
+sleep 2
 
-# Installing "Auto Suggestions" addon for ZSH, and appending that to the plugins list.
-show_banner
-echo "Installing 'Auto Suggestions' addon for Oh-My-ZSH..."
-git_handle_plugin_repo "https://github.com/zsh-users/zsh-autosuggestions.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-sed_handle_plugin_zshrc "zsh-autosuggestions"
+# Installing powerlevel10k theme for ZSH.
+echo -n -e "Setting up powerlevel10k theme for ZInit. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
 
-# Installing "Custom Plugins Updater" addon for ZSH, and appending that to the plugins list.
-show_banner
-echo "Installing 'Custom Plugins Updater' addon for Oh-My-ZSH..."
-git_handle_plugin_repo "https://github.com/TamCore/autoupdate-oh-my-zsh-plugins" "$HOME/.oh-my-zsh/custom/plugins/autoupdate"
-sed_handle_plugin_zshrc "autoupdate"
+# Powerlevel10k Theme.
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+EOF
+sleep 2
 
-# Cloning the LITMUX repo, to be handled by the updater.
-git_handle_plugin_repo "https://github.com/AvinashReddy3108/LitMux.git" "$HOME/.oh-my-zsh/custom/misc/LitMux"
+# Fix some keybinds for Termux.
+echo -n -e "Fixing some common keybinds for ZSH. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
 
-# Installing powerlevel10k theme for ZSH, and making it the current theme in .zshrc file.
-show_banner
-echo "Installing 'Powerlevel10K' theme for ZSH..."
-git_handle_plugin_repo "https://github.com/romkatv/powerlevel10k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-sed -i 's~\(ZSH_THEME="\)[^"]*\(".*\)~\1powerlevel10k/powerlevel10k\2~' ~/.zshrc
+# Fixed common keybinds, thank me later.
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+EOF
+sleep 2
+
+# Shell aliases/functions.
+echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
+
+# Add your aliases/functions here!
+alias lit-colors='bash -c "$(curl -fsSl 'https://git.io/JURDN')"'
+EOF
+sleep 2
 
 # Installing the Powerline font for Termux.
 if [ ! -f ~/.termux/font.ttf ]; then
-    show_banner
-    echo "Installing the Powerline patched font for Termux..."
-    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' > /dev/null
+    echo -n -e "Installing Powerline patched font. \033[0K\r"
+    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' &> /dev/null
+    sleep 2
 fi
 
-# Set 'Tango' as the default color scheme for the shell.
+# Set a default color scheme.
 if [ ! -f ~/.termux/colors.properties ]; then
-    show_banner
-    echo "Changing default color scheme for Termux..."
-    cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/colors/_base.colors" ~/.termux/colors.properties
-else
-    show_banner
-    echo "Using existing custom color scheme for Termux."
+    echo -n -e "Setting up a new color scheme. \033[0K\r"
+    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties' &> /dev/null
+    sleep 2
 fi
 
 # Add new buttons to the Termux bottom bar.
 if [ ! -f ~/.termux/termux.properties ]; then
-    show_banner
-    echo "Adding extra buttons to Termux Keyboard..."
-    cp -fr "$HOME/.oh-my-zsh/custom/misc/LitMux/.termux/termux.properties" ~/.termux/termux.properties
-else
-    show_banner
-    echo "Using existing custom keyboard layout for Termux."
+    echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
+    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties' &> /dev/null
+    sleep 2
 fi
 
 # Reload Termux settings.
 termux-reload-settings
 
-# Run a ZSH shell, opens the p10k config wizard if not set up already.
-clear
-print_centered ""
-print_centered ""
-print_centered "██╗     ██╗████████╗███╗   ███╗██╗   ██╗██╗  ██╗";
-print_centered "██║     ██║╚══██╔══╝████╗ ████║██║   ██║╚██╗██╔╝";
-print_centered "██║     ██║   ██║   ██╔████╔██║██║   ██║ ╚███╔╝ ";
-print_centered "██║     ██║   ██║   ██║╚██╔╝██║██║   ██║ ██╔██╗ ";
-print_centered "███████╗██║   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝ ██╗";
-print_centered "╚══════╝╚═╝   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝";
-print_centered "";
-print_centered "     Installation Complete, gimme cookies :P    ";
-print_centered ""
-print_centered ""
+# Run a ZSH shell, opens the p10k config wizard.
+echo -n -e "Installation complete, gimme cookies! \033[0K\r"
 sleep 3
-
-if [ ! -f ~/.p10k.zsh ]; then
-    sed -i "/.p10k.zsh/d" ~/.zshrc
-fi
-
 if ! grep -q "zsh" "$SHELL"; then
     exec zsh -l
 fi
-
-tput cnorm
 exit
