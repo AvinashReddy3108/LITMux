@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Turn off cursor.
+setterm -cursor off
+
+echo "  _     ___  _____  __  __            ";
+echo " | |   |_ _||_   _||  \/  | _  _ __ __";
+echo " | |__  | |   | |  | |\/| || || |\ \ /";
+echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
+echo "                                      ";
+echo "      Fast, beautiful, LIT AF!        ";
+echo "                                      ";
+
 # Updating package repositories and installing packages.
 echo -n -e "Syncing repositories and installing packages. \033[0K\r"
 (pkg update && pkg install -y git zsh) &> /dev/null
@@ -14,7 +25,7 @@ fi
 
 if [ -f ~/.zshrc ]; then
     echo -n -e "Backing up current ZSH configuration. \033[0K\r"
-    mkdir -p ~/storage/shared/LITMux/backups
+    mkdir -p ~/storage/shared/LITMux/backup
     mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc.bak
     sleep 2
 fi
@@ -97,6 +108,10 @@ termux-reload-settings
 # Run a ZSH shell, opens the p10k config wizard.
 echo -n -e "Installation complete, gimme cookies! \033[0K\r"
 sleep 3
+
+# Restore cursor.
+setterm -cursor on
+
 if ! grep -q "zsh" "$SHELL"; then
     exec zsh -l
 fi

@@ -1,4 +1,3 @@
-
 # LITMux - Termux made [LIT AF](https://www.urbandictionary.com/define.php?term=lit&defid=7514041)!
 
 This is a simple, personal bootstrap script for [Termux](https://play.google.com/store/apps/details?id=com.termux) to switch away from the boring BASH shell it comes with as the default.
@@ -7,7 +6,7 @@ This is a simple, personal bootstrap script for [Termux](https://play.google.com
 - A minimal ZSh setup, consisting of:
     - Ultra-flexible and fast [plugin manager](https://github.com/zdharma/zinit), compatible with most of the plugins in the wild.
     - A really fast and reliable [syntax-highlighter](https://github.com/zdharma/fast-syntax-highlighting).
-    - Reliable completions and automatic suggestions.
+    - Reliable [shell completions](https://github.com/zsh-users/zsh-completions) and [automatic suggestions](https://github.com/zsh-users/zsh-autosuggestions).
     - A color-scheme chooser with large library of themes (Ported from [Gogh](https://github.com/Mayccoll/Gogh), and hosted [here](https://github.com/AvinashReddy3108/Gogh4Termux) by yours truly).
     - The fast, powerful, and highly customizable [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme.
 
@@ -17,17 +16,13 @@ This is a simple, personal bootstrap script for [Termux](https://play.google.com
 
 
 ## Install:
-
-Installing this is as easy as running the command below (I recommend doing this on a clean/vanilla Termux install)
-
+Installing this is as easy as running the command below in Termux.
 ```shell
 bash -c "$(curl -fsSL https://git.io/Jei6P)"
 ```
 
 Don't worry, the existing `.zshrc` file will be backed up in your storage for later. You can find it in the `backup` directory at the location below.
-```
-Internal Storage (/sdcard [or] /storage/emulated/0) -> LITMux -> backup -> zshrc.bak
-```
+> Internal Storage (`/sdcard` [or] `/storage/emulated/0`) -> `LITMux` -> `backup` -> `zshrc.bak`
 
 ## Credits/Thanks:
  - [Cabbagec](https://github.com/Cabbagec) for his [termux-ohmyzsh](https://github.com/Cabbagec/termux-ohmyzsh) script.
