@@ -3,6 +3,7 @@
 # Turn off cursor.
 setterm -cursor off
 
+echo "                                      ";
 echo "  _     ___  _____  __  __            ";
 echo " | |   |_ _||_   _||  \/  | _  _ __ __";
 echo " | |__  | |   | |  | |\/| || || |\ \ /";
@@ -38,8 +39,8 @@ sleep 2
 # Changing default shell to ZSH.
 chsh -s zsh
 
-# Syntax highlighting, completions and suggestions.
-echo -n -e "Setting up Syntax highlighting, completions and auto-suggestions for ZInit. \033[0K\r"
+# Addons for ZInit.
+echo -n -e "Setting up ZInit addons. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Syntax highlighting, completions and auto-suggestions.
@@ -54,7 +55,7 @@ EOF
 sleep 2
 
 # Installing powerlevel10k theme for ZSH.
-echo -n -e "Setting up powerlevel10k theme for ZInit. \033[0K\r"
+echo -n -e "Setting up powerlevel10k theme. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Powerlevel10k Theme.
