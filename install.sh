@@ -66,7 +66,7 @@ echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
-alias lit-colors='bash -c "$(curl -fsSl 'https://git.io/JURDN')"'
+alias lit-colors='bash -c "$(curl -fsSL 'https://git.io/JURDN')"'
 EOF
 sleep 2
 
