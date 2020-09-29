@@ -81,13 +81,21 @@ echo -n -e "Fixing some common keybinds for ZSH. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Fixed common keybinds, thank me later.
+# HOME/END keys
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
+
+# PAGEUP/PAGEDN keys
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+
+# DELETE key
+bindkey "^[[3~" delete-char
 EOF
 sleep 2
 
 # ZSH does not save history by default, let's fix that.
-echo -n -e "Fixing some common keybinds for ZSH. \033[0K\r"
+echo -n -e "Enabling history across sessions for ZSH. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # History configuration.
