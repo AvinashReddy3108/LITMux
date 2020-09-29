@@ -13,9 +13,19 @@ echo "                                      ";
 echo "      Fast, beautiful, LIT AF!        ";
 echo "                                      ";
 
+# Get fastest mirrors/sync.
+echo -n -e "Syncing with fastest package mirrors. \033[0K\r"
+(echo 'n' | pkg update) &> /dev/null
+sleep 2
+
+# Upgrade ALL packages to their latest versions.
+echo -n -e "Upgrading current packages, please wait. \033[0K\r"
+(apt-get -o Dpkg::Options::="--force-overwrite" upgrade -y) &> /dev/null
+sleep 2
+
 # Updating package repositories and installing packages.
-echo -n -e "Syncing repositories and installing packages. \033[0K\r"
-(pkg update && pkg install -y git zsh) &> /dev/null
+echo -n -e "Installing required packages. \033[0K\r"
+(pkg install -y git zsh) &> /dev/null
 sleep 2
 
 # Giving Storage permision to Termux App.
