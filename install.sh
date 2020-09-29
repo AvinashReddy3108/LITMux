@@ -4,15 +4,14 @@
 setterm -cursor off
 
 
-echo "    ___   ___     ___      ___      ___      ___   ";
-echo "   /\__\ /\  \   /\  \    /\__\    /\__\    /\__\  ";
-echo "  /:/  /_\:\  \  \:\  \  /::L_L_  /:/ _/_  |::L__L ";
-echo " /:/__//\/::\__\ /::\__\/:/L:\__\/:/_/\__\/::::\__\";
-echo " \:\  \\::/\/__//:/\/__/\/_/:/  /\:\/:/  /\;::;/__/";
-echo "  \:\__\\:\__\  \/__/     /:/  /  \::/  /  |::|__| ";
-echo "   \/__/ \/__/            \/__/    \/__/    \/__/  ";
-echo "              Fast, beautiful, LIT AF!             ";
-echo "                                                   ";
+echo "                                      ";
+echo "  _     ___  _____  __  __            ";
+echo " | |   |_ _||_   _||  \/  | _  _ __ __";
+echo " | |__  | |   | |  | |\/| || || |\ \ /";
+echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
+echo "                                      ";
+echo "      Fast, beautiful, LIT AF!        ";
+echo "                                      ";
 
 # Updating package repositories and installing packages.
 echo -n -e "Syncing repositories and installing packages. \033[0K\r"
