@@ -3,14 +3,16 @@
 # Turn off cursor.
 setterm -cursor off
 
-echo "                                      ";
-echo "  _     ___  _____  __  __            ";
-echo " | |   |_ _||_   _||  \/  | _  _ __ __";
-echo " | |__  | |   | |  | |\/| || || |\ \ /";
-echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
-echo "                                      ";
-echo "      Fast, beautiful, LIT AF!        ";
-echo "                                      ";
+
+echo "    ___   ___     ___      ___      ___      ___   ";
+echo "   /\__\ /\  \   /\  \    /\__\    /\__\    /\__\  ";
+echo "  /:/  /_\:\  \  \:\  \  /::L_L_  /:/ _/_  |::L__L ";
+echo " /:/__//\/::\__\ /::\__\/:/L:\__\/:/_/\__\/::::\__\";
+echo " \:\  \\::/\/__//:/\/__/\/_/:/  /\:\/:/  /\;::;/__/";
+echo "  \:\__\\:\__\  \/__/     /:/  /  \::/  /  |::|__| ";
+echo "   \/__/ \/__/            \/__/    \/__/    \/__/  ";
+echo "              Fast, beautiful, LIT AF!             ";
+echo "                                                   ";
 
 # Updating package repositories and installing packages.
 echo -n -e "Syncing repositories and installing packages. \033[0K\r"
@@ -37,7 +39,9 @@ echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
 sleep 2
 
 # Changing default shell to ZSH.
+echo -n -e "Changing default shell to ZSH. \033[0K\r"
 chsh -s zsh
+sleep 2
 
 # Addons for ZInit.
 echo -n -e "Setting up ZInit addons. \033[0K\r"
@@ -70,6 +74,35 @@ cat <<'EOF' >> ~/.zshrc
 # Fixed common keybinds, thank me later.
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
+EOF
+sleep 2
+
+# ZSH does not save history by default, let's fix that.
+echo -n -e "Fixing some common keybinds for ZSH. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
+
+# History configuration.
+HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
+
+# record timestamp of command in HISTFILE
+setopt extended_history
+
+# delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_expire_dups_first
+
+# ignore duplicated commands history list
+setopt hist_ignore_dups
+
+# ignore commands that start with space
+setopt hist_ignore_space
+
+# show command with history expansion to user before running it
+setopt hist_verify
+
+# share command history data
+setopt share_history
 EOF
 sleep 2
 
