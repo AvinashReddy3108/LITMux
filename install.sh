@@ -25,7 +25,7 @@ sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-(pkg install -y git zsh) &> /dev/null
+(pkg install -y git svn zsh) &> /dev/null
 sleep 2
 
 # Giving Storage permision to Termux App.
@@ -52,18 +52,31 @@ echo -n -e "Changing default shell to ZSH. \033[0K\r"
 chsh -s zsh
 sleep 2
 
+# Importing some libs from Oh-My-ZSH
+echo -n -e "Importing some libs from Oh-My-ZSH. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
+
+# Loading some(?) Oh-My-ZSH libs with ZInit Turbo!
+array=( {theme-and-appearance,prompt_info_functions,functions,directories,history,grep,completion,key-bindings,misc}.zsh )
+zinit ice svn multisrc"$array" pick"/dev/null"
+zinit snippet OMZ::lib
+EOF
+sleep 2
+
 # Addons for ZInit.
 echo -n -e "Setting up ZInit addons. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
-# Syntax highlighting, completions and auto-suggestions.
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+# Syntax highlighting, completions, auto-suggestions and some other plugins.
+zinit wait lucid light-mode for \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+      zdharma/fast-syntax-highlighting \
+      OMZ::plugins/colored-man-pages \
+      OMZ::plugins/git \
+  atload"!_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 EOF
 sleep 2
 
@@ -73,53 +86,6 @@ cat <<'EOF' >> ~/.zshrc
 
 # Powerlevel10k Theme.
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-EOF
-sleep 2
-
-# Fix some keybinds for Termux.
-echo -n -e "Fixing some common keybinds for ZSH. \033[0K\r"
-cat <<'EOF' >> ~/.zshrc
-
-# Fixed common keybinds, thank me later.
-# HOME/END keys
-bindkey "\e[H" beginning-of-line
-bindkey "\e[F" end-of-line
-
-# PAGEUP/PAGEDN keys
-bindkey "^[[5~" up-line-or-history
-bindkey "^[[6~" down-line-or-history
-
-# DELETE key
-bindkey "^[[3~" delete-char
-EOF
-sleep 2
-
-# ZSH does not save history by default, let's fix that.
-echo -n -e "Enabling history across sessions for ZSH. \033[0K\r"
-cat <<'EOF' >> ~/.zshrc
-
-# History configuration.
-HISTFILE="$HOME/.zsh_history"
-[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
-[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
-
-# record timestamp of command in HISTFILE
-setopt extended_history
-
-# delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_expire_dups_first
-
-# ignore duplicated commands history list
-setopt hist_ignore_dups
-
-# ignore commands that start with space
-setopt hist_ignore_space
-
-# show command with history expansion to user before running it
-setopt hist_verify
-
-# share command history data
-setopt share_history
 EOF
 sleep 2
 
