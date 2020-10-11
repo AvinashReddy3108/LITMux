@@ -25,7 +25,7 @@ sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-(pkg install -y git svn zsh) &> /dev/null
+(apt install -y git subversion zsh) &> /dev/null
 sleep 2
 
 # Giving Storage permision to Termux App.
