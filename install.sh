@@ -57,8 +57,8 @@ echo -n -e "Importing some libs from Oh-My-ZSH. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Loading some(?) Oh-My-ZSH libs with ZInit Turbo!
-array=( {theme-and-appearance,prompt_info_functions,functions,directories,history,grep,completion,key-bindings,misc}.zsh )
-zinit ice svn multisrc"$array" pick"/dev/null"
+omz_libs=( {history,completion,key-bindings}.zsh )
+zinit ice svn multisrc"\$omz_libs" pick"/dev/null"
 zinit snippet OMZ::lib
 EOF
 sleep 2
