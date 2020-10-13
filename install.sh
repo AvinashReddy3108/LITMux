@@ -16,25 +16,25 @@ echo "                                      ";
 # Handy function to silence stuff.
 shutt () {
     { "$@" || return $?; } | while read -r line; do
-    sleep '0.1'
+        :
     done
 }
 
 # Get fastest mirrors.
 echo -n -e "Syncing with fastest mirrors. \033[0K\r"
 (echo 'n' | pkg update) | while read -r line; do
-sleep '0.1'
+    :
 done
 sleep 2
 
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
-shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y
+shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y 2>/dev/null
 sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt pkg install -y curl git zsh
+shutt pkg install -y curl git zsh 2>/dev/null
 sleep 2
 
 # Giving Storage permision to Termux App.
