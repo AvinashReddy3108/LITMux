@@ -3,6 +3,7 @@
 # Turn off cursor.
 setterm -cursor off
 
+banner () {
 clear
 echo "                                      ";
 echo "  _     ___  _____  __  __            ";
@@ -12,6 +13,8 @@ echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
 echo "                                      ";
 echo "      Fast, beautiful, LIT AF!        ";
 echo "                                      ";
+}
+banner
 
 # Handy function to silence stuff.
 shutt () {
@@ -22,7 +25,7 @@ shutt () {
 
 # Get fastest mirrors.
 echo -n -e "Syncing with fastest mirrors. \033[0K\r"
-(echo 'n' | pkg update) | while read -r line; do
+(echo 'n' | pkg update 2>/dev/null) | while read -r line; do
     :
 done
 sleep 2
@@ -133,6 +136,7 @@ fi
 termux-reload-settings
 
 # Run a ZSH shell, opens the p10k config wizard.
+banner
 echo -n -e "Installation complete, gimme cookies! \033[0K\r"
 sleep 3
 
