@@ -14,7 +14,7 @@ echo "      Fast, beautiful, LIT AF!        ";
 echo "                                      ";
 
 # Handy function to silence stuff.
-muzzle () {
+shutt () {
     { "$@" || return $?; } | while read -r line; do
     sleep '0.1'
     done
@@ -22,17 +22,19 @@ muzzle () {
 
 # Get fastest mirrors.
 echo -n -e "Syncing with fastest mirrors. \033[0K\r"
-muzzle (echo 'n'|pkg update)
+(echo 'n' | pkg update) | while read -r line; do
+sleep '0.1'
+done
 sleep 2
 
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
-muzzle apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y
+shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y
 sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-muzzle pkg install -y curl git zsh
+shutt pkg install -y curl git zsh
 sleep 2
 
 # Giving Storage permision to Termux App.
@@ -51,7 +53,7 @@ fi
 
 # Installing ZInit.
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
-muzzle (echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)")
+(echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
 sleep 2
 
 # Changing default shell to ZSH.
@@ -109,21 +111,21 @@ sleep 2
 # Installing the Powerline font for Termux.
 if [ ! -f ~/.termux/font.ttf ]; then
     echo -n -e "Installing Powerline patched font. \033[0K\r"
-    muzzle curl -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
+    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' &> /dev/null
     sleep 2
 fi
 
 # Set a default color scheme.
 if [ ! -f ~/.termux/colors.properties ]; then
     echo -n -e "Setting up a new color scheme. \033[0K\r"
-    muzzle curl -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
+    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties' &> /dev/null
     sleep 2
 fi
 
 # Add new buttons to the Termux bottom bar.
 if [ ! -f ~/.termux/termux.properties ]; then
     echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-    muzzle curl -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
+    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties' &> /dev/null
     sleep 2
 fi
 
