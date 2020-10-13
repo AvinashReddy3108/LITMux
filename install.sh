@@ -3,40 +3,46 @@
 # Turn off cursor.
 setterm -cursor off
 
-banner () {
-    clear
-    echo "                                      ";
-    echo "  _     ___  _____  __  __            ";
-    echo " | |   |_ _||_   _||  \/  | _  _ __ __";
-    echo " | |__  | |   | |  | |\/| || || |\ \ /";
-    echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
-    echo "                                      ";
-    echo "      Fast, beautiful, LIT AF!        ";
-    echo "                                      ";
+clear
+echo "                                      ";
+echo "  _     ___  _____  __  __            ";
+echo " | |   |_ _||_   _||  \/  | _  _ __ __";
+echo " | |__  | |   | |  | |\/| || || |\ \ /";
+echo " |____||___|  |_|  |_|  |_| \_,_|/_\_\\";
+echo "                                      ";
+echo "      Fast, beautiful, LIT AF!        ";
+echo "                                      ";
+
+# Handy function to silence stuff.
+muzzle () {
+    { "$@" || return $?; } | while read -r line; do
+    sleep '0.1'
+    done
 }
 
-# Get fastest mirrors + upgrade packages.
-banner
-echo -n -e "Syncing with fastest mirrors and upgrading your packages. \033[0K\r"
-pkg upgrade -y
+# Get fastest mirrors.
+echo -n -e "Syncing with fastest mirrors. \033[0K\r"
+muzzle (echo 'n'|pkg update)
+sleep 2
+
+# Upgrade packages.
+echo -n -e "Upgrading packages. \033[0K\r"
+muzzle apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y
 sleep 2
 
 # Updating package repositories and installing packages.
-banner
 echo -n -e "Installing required packages. \033[0K\r"
-pkg install -y git zsh
+muzzle pkg install -y curl git zsh
 sleep 2
 
 # Giving Storage permision to Termux App.
 if [ ! -d ~/storage ]; then
-    banner
     echo -n -e "Setting up storage access for Termux. \033[0K\r"
     termux-setup-storage
     sleep 2
 fi
 
 if [ -f ~/.zshrc ]; then
-    banner
     echo -n -e "Backing up current ZSH configuration. \033[0K\r"
     mkdir -p ~/storage/shared/LITMux/backup
     mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc.bak
@@ -44,19 +50,16 @@ if [ -f ~/.zshrc ]; then
 fi
 
 # Installing ZInit.
-banner
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
-(echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
+muzzle (echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)")
 sleep 2
 
 # Changing default shell to ZSH.
-banner
 echo -n -e "Changing default shell to ZSH. \033[0K\r"
 chsh -s zsh
 sleep 2
 
 # Importing some libs from Oh-My-ZSH
-banner
 echo -n -e "Importing some libs from Oh-My-ZSH. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
@@ -69,7 +72,6 @@ EOF
 sleep 2
 
 # Addons for ZInit.
-banner
 echo -n -e "Setting up ZInit addons. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
@@ -87,7 +89,6 @@ EOF
 sleep 2
 
 # Installing powerlevel10k theme for ZSH.
-banner
 echo -n -e "Setting up powerlevel10k theme. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
@@ -97,7 +98,6 @@ EOF
 sleep 2
 
 # Shell aliases/functions.
-banner
 echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
@@ -108,25 +108,22 @@ sleep 2
 
 # Installing the Powerline font for Termux.
 if [ ! -f ~/.termux/font.ttf ]; then
-    banner
     echo -n -e "Installing Powerline patched font. \033[0K\r"
-    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' &> /dev/null
+    muzzle curl -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
     sleep 2
 fi
 
 # Set a default color scheme.
 if [ ! -f ~/.termux/colors.properties ]; then
-    banner
     echo -n -e "Setting up a new color scheme. \033[0K\r"
-    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties' &> /dev/null
+    muzzle curl -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
     sleep 2
 fi
 
 # Add new buttons to the Termux bottom bar.
 if [ ! -f ~/.termux/termux.properties ]; then
-    banner
     echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties' &> /dev/null
+    muzzle curl -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
     sleep 2
 fi
 
@@ -134,7 +131,6 @@ fi
 termux-reload-settings
 
 # Run a ZSH shell, opens the p10k config wizard.
-banner
 echo -n -e "Installation complete, gimme cookies! \033[0K\r"
 sleep 3
 
