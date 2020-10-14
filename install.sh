@@ -69,7 +69,7 @@ echo -n -e "Importing some libs from Oh-My-ZSH. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Loading some(?) Oh-My-ZSH libs with ZInit Turbo!
-zinit wait lucid for \
+zinit lucid light-mode for \
     OMZ::lib/history.zsh \
     OMZ::lib/completion.zsh \
     OMZ::lib/key-bindings.zsh
