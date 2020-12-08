@@ -37,7 +37,7 @@ sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt pkg install -y curl git zsh 2>/dev/null
+shutt apt install -y curl git zsh 2>/dev/null
 sleep 2
 
 # Giving Storage permision to Termux App.
