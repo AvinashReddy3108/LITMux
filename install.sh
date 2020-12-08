@@ -30,6 +30,13 @@ echo -n -e "Syncing with fastest mirrors. \033[0K\r"
 done
 sleep 2
 
+# Update package lists.
+echo -n -e "Updating package lists. \033[0K\r"
+(echo 'n' | apt update 2>/dev/null) | while read -r line; do
+    :
+done
+sleep 2
+
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
 shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y 2>/dev/null
