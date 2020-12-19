@@ -25,31 +25,31 @@ shutt () {
 
 # Get fastest mirrors.
 echo -n -e "Syncing with fastest mirrors. \033[0K\r"
-(echo 'n' | pkg update 2>/dev/null) | while read -r line; do
+(echo 'n' | pkg update) | while read -r line; do
     :
 done
 sleep 2
 
 # Update package lists.
 echo -n -e "Updating package lists. \033[0K\r"
-(echo 'n' | apt update 2>/dev/null) | while read -r line; do
+(echo 'n' | apt update) | while read -r line; do
     :
 done
 sleep 2
 
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
-shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y 2>/dev/null
+shutt apt-get upgrade -o Dpkg::Options::='--force-confnew' -y
 sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt apt install -y curl git zsh man 2>/dev/null
+shutt apt install -y curl git zsh man
 sleep 2
 
 # Installing SUDO.
 echo -n -e "Installing SUDO. \033[0K\r"
-curl -fsSL -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' &> /dev/null
+curl -fsSL -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
 chmod u+x $PREFIX/bin/sudo
 sleep 2
 
@@ -76,12 +76,6 @@ sleep 2
 echo -n -e "Installing AndroFetch. \033[0K\r"
 curl -fsSL -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
 chmod u+x $PREFIX/bin/androfetch
-sleep 2
-
-# Installing APTMan (ArchLinux's pacman like wrapper for APT/pkg)
-echo -n -e "Installing APTMan. \033[0K\r"
-curl -fsSL -o $PREFIX/bin/aptman https://raw.githubusercontent.com/SkyyySi/aptman/main/aptman
-chmod u+x $PREFIX/bin/aptman
 sleep 2
 
 # Changing default shell to ZSH.
@@ -134,7 +128,9 @@ cat <<'EOF' >> ~/.zshrc
 # Add your aliases/functions here!
 function lit-colors() {
   if [ curl -Is https://git.io | head -n 1 | grep 'OK' ]; then
+    echo "Fetching color schemes from repository...."
     bash -c "$(curl -fsSL 'https://git.io/JURDN')"
+    clear
   else
     echo "Can't connect to color schemes repository."
   fi
@@ -149,21 +145,21 @@ sleep 2
 # Installing the Powerline font for Termux.
 if [ ! -f ~/.termux/font.ttf ]; then
     echo -n -e "Installing Powerline patched font. \033[0K\r"
-    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' &> /dev/null
+    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
     sleep 2
 fi
 
 # Set a default color scheme.
 if [ ! -f ~/.termux/colors.properties ]; then
     echo -n -e "Setting up a new color scheme. \033[0K\r"
-    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties' &> /dev/null
+    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
     sleep 2
 fi
 
 # Add new buttons to the Termux bottom bar.
 if [ ! -f ~/.termux/termux.properties ]; then
     echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties' &> /dev/null
+    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
     sleep 2
 fi
 
@@ -173,12 +169,14 @@ termux-reload-settings
 # Run a ZSH shell, opens the p10k config wizard.
 banner
 echo -n -e "Installation complete, gimme cookies! \033[0K\r"
+echo ""
+echo ""
 sleep 3
 
 # Restore cursor.
 setterm -cursor on
 
-if ! grep -q "zsh" "$SHELL"; then
+if ! grep -lq "zsh" "$SHELL"; then
     exec zsh -l
 fi
 exit
