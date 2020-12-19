@@ -44,7 +44,13 @@ sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt apt install -y curl git zsh 2>/dev/null
+shutt apt install -y curl git zsh man 2>/dev/null
+sleep 2
+
+# Installing SUDO.
+echo -n -e "Installing SUDO. \033[0K\r"
+curl -fsSL -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' &> /dev/null
+chmod u+x $PREFIX/bin/sudo
 sleep 2
 
 # Giving Storage permision to Termux App.
@@ -64,6 +70,18 @@ fi
 # Installing ZInit.
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
 (echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
+sleep 2
+
+# Installing AndroFetch (slim AF neofetch replacement)
+echo -n -e "Installing AndroFetch. \033[0K\r"
+curl -fsSL -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
+chmod u+x $PREFIX/bin/androfetch
+sleep 2
+
+# Installing APTMan (ArchLinux's pacman like wrapper for APT/pkg)
+echo -n -e "Installing APTMan. \033[0K\r"
+curl -fsSL -o $PREFIX/bin/aptman https://raw.githubusercontent.com/SkyyySi/aptman/main/aptman
+chmod u+x $PREFIX/bin/aptman
 sleep 2
 
 # Changing default shell to ZSH.
@@ -114,7 +132,17 @@ echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
-alias lit-colors='bash -c "$(curl -fsSL 'https://git.io/JURDN')"'
+function lit-colors() {
+  if [ curl -Is https://git.io | head -n 1 | grep 'OK' ]; then
+    bash -c "$(curl -fsSL 'https://git.io/JURDN')"
+  else
+    echo "Can't connect to color schemes repository."
+  fi
+}
+
+alias fetch='androfetch'
+alias pac='aptman'
+
 EOF
 sleep 2
 
