@@ -25,19 +25,19 @@ shutt () {
 
 # Get fastest mirrors.
 echo -n -e "Syncing with fastest mirrors. \033[0K\r"
-(echo 'n' | pkg update) | while read -r line; do
+(echo 'n' | pkg update 2>/dev/null) | while read -r line; do
     :
 done
 sleep 2
 
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
-shutt apt-get upgrade -o Dpkg::Options::='--force-confnew' -y
+shutt apt-get upgrade -o Dpkg::Options::='--force-confnew' -y 2>/dev/null
 sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt apt update && apt install -y curl git zsh man
+shutt apt update && apt install -y curl git zsh man 2>/dev/null
 sleep 2
 
 # Installing SUDO.
