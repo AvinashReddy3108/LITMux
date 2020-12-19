@@ -30,21 +30,21 @@ echo -n -e "Syncing with fastest mirrors. \033[0K\r"
 done
 sleep 2
 
-# Update package lists.
-echo -n -e "Updating package lists. \033[0K\r"
-(echo 'n' | apt update 2>/dev/null) | while read -r line; do
-    :
-done
-sleep 2
-
 # Upgrade packages.
 echo -n -e "Upgrading packages. \033[0K\r"
-shutt apt-get -o Dpkg::Options::="--force-confnew" upgrade -q -y 2>/dev/null
+shutt apt-get upgrade -o Dpkg::Options::='--force-confnew' -y 2>/dev/null
 sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt apt install -y curl git zsh 2>/dev/null
+shutt apt update 2>/dev/null
+shutt apt install -y curl git zsh man 2>/dev/null
+sleep 2
+
+# Installing SUDO.
+echo -n -e "Installing SUDO. \033[0K\r"
+curl -fsSL -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
+chmod u+x $PREFIX/bin/sudo
 sleep 2
 
 # Giving Storage permision to Termux App.
@@ -54,16 +54,27 @@ if [ ! -d ~/storage ]; then
     sleep 2
 fi
 
-if [ -f ~/.zshrc ]; then
-    echo -n -e "Backing up current ZSH configuration. \033[0K\r"
-    mkdir -p ~/storage/shared/LITMux/backup
-    mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc.bak
-    sleep 2
-fi
+# Backing up some Termux/Shell stuff.
+mkdir -p ~/storage/shared/LITMux/backup
+for i in "~/.zshrc" "~/.termux/font.ttf" "~/.termux/colors.properties" "~/.termux/termux.properties"
+do
+    if [ -f $i ]; then
+        echo -n -e "Backing up current $i file. \033[0K\r"
+        mv -f $i ~/storage/shared/LITMux/backup/$(date +%Y_%m_%d_%H_%M)/$(basename $i)
+        sleep 1
+    fi
+done
+sleep 2
 
 # Installing ZInit.
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
 (echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
+sleep 2
+
+# Installing AndroFetch (slim AF neofetch replacement)
+echo -n -e "Installing AndroFetch. \033[0K\r"
+curl -fsSL -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
+chmod u+x $PREFIX/bin/androfetch
 sleep 2
 
 # Changing default shell to ZSH.
@@ -110,34 +121,61 @@ EOF
 sleep 2
 
 # Shell aliases/functions.
-echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
+echo -n -e "Adding some shell aliases/functions to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
-alias lit-colors='bash -c "$(curl -fsSL 'https://git.io/JURDN')"'
+function lit-colors() {
+  if [ curl -Is https://git.io | head -n 1 | grep 'OK' ]; then
+    echo "Fetching color schemes from repository...."
+    bash -c "$(curl -fsSL 'https://git.io/JURDN')"
+    clear
+  else
+    echo "Can't connect to color schemes repository."
+  fi
+}
+
+function lit-update() {
+    echo -n -e "Updating system packages. \033[0K\r"
+    pkg upgrade -y
+    clear
+    
+    echo -n -e "Updating ZSH/Zinit stuff. \033[0K\r"
+    zi update --all
+    clear
+    
+    echo -n -e "Updating SUDO. \033[0K\r"
+    curl -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
+    clear
+    
+    echo -n -e "Updating Androfetch. \033[0K\r"
+    curl -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
+    clear
+    
+    echo -n -e "Updated succesfully, enjoy! \033[0K\r"
+}
+
+alias fetch='androfetch'
+
 EOF
 sleep 2
 
 # Installing the Powerline font for Termux.
 if [ ! -f ~/.termux/font.ttf ]; then
     echo -n -e "Installing Powerline patched font. \033[0K\r"
-    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf' &> /dev/null
+    curl -fsSL -o ~/.termux/font.ttf 'https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf'
     sleep 2
 fi
 
 # Set a default color scheme.
-if [ ! -f ~/.termux/colors.properties ]; then
-    echo -n -e "Setting up a new color scheme. \033[0K\r"
-    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties' &> /dev/null
-    sleep 2
-fi
+echo -n -e "Setting up a new color scheme. \033[0K\r"
+curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
+sleep 2
 
 # Add new buttons to the Termux bottom bar.
-if [ ! -f ~/.termux/termux.properties ]; then
-    echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties' &> /dev/null
-    sleep 2
-fi
+echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
+curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
+sleep 2
 
 # Reload Termux settings.
 termux-reload-settings
@@ -150,7 +188,8 @@ sleep 3
 # Restore cursor.
 setterm -cursor on
 
-if ! grep -q "zsh" "$SHELL"; then
+if ! grep -lq "zsh" "$SHELL"; then
+    clear
     exec zsh -l
 fi
 exit
