@@ -126,7 +126,7 @@ cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
 function lit-colors() {
-  if [ curl -Is https://git.io | head -n 1 | grep 'OK' ]; then
+  if curl -Is https://git.io | head -n 1 | grep -lq 'OK'; then
     echo "Fetching color schemes from repository...."
     bash -c "$(curl -fsSL 'https://git.io/JURDN')"
     clear
@@ -136,23 +136,25 @@ function lit-colors() {
 }
 
 function lit-update() {
-    echo -n -e "Updating system packages. \033[0K\r"
+    echo "Updating system packages."
     pkg upgrade -y
     clear
     
-    echo -n -e "Updating ZSH/Zinit stuff. \033[0K\r"
+    echo "Updating ZSH/Zinit stuff.."
     zi update --all
     clear
     
-    echo -n -e "Updating SUDO. \033[0K\r"
+    echo "Updating SUDO..."
     curl -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
     clear
     
-    echo -n -e "Updating Androfetch. \033[0K\r"
+    echo "Updating Androfetch...."
     curl -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
     clear
     
-    echo -n -e "Updated succesfully, enjoy! \033[0K\r"
+    echo "Updated succesfully, enjoy!"
+    sleep 2
+    clear
 }
 
 alias fetch='androfetch'
