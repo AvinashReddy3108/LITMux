@@ -54,12 +54,17 @@ if [ ! -d ~/storage ]; then
     sleep 2
 fi
 
-if [ -f ~/.zshrc ]; then
-    echo -n -e "Backing up current ZSH configuration. \033[0K\r"
-    mkdir -p ~/storage/shared/LITMux/backup
-    mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc-$(date +%Y.%m.%d-%H:%M:%S).bak
-    sleep 2
-fi
+# Backing up some Termux/Shell stuff.
+mkdir -p ~/storage/shared/LITMux/backup
+for i in "~/.zshrc" "~/.termux/font.ttf" "~/.termux/colors.properties" "~/.termux/termux.properties"
+do
+    if [ -f $i ]; then
+        echo -n -e "Backing up current $i file. \033[0K\r"
+        mv -f $i ~/storage/shared/LITMux/backup/$(date +%Y_%m_%d_%H_%M)/$(basename $i)
+        sleep 1
+    fi
+done
+sleep 2
 
 # Installing ZInit.
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
@@ -151,7 +156,6 @@ function lit-update() {
 }
 
 alias fetch='androfetch'
-alias pac='aptman'
 
 EOF
 sleep 2
@@ -164,18 +168,14 @@ if [ ! -f ~/.termux/font.ttf ]; then
 fi
 
 # Set a default color scheme.
-if [ ! -f ~/.termux/colors.properties ]; then
-    echo -n -e "Setting up a new color scheme. \033[0K\r"
-    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
-    sleep 2
-fi
+echo -n -e "Setting up a new color scheme. \033[0K\r"
+curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
+sleep 2
 
 # Add new buttons to the Termux bottom bar.
-if [ ! -f ~/.termux/termux.properties ]; then
-    echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
-    sleep 2
-fi
+echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
+curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
+sleep 2
 
 # Reload Termux settings.
 termux-reload-settings
