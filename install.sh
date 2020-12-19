@@ -37,7 +37,8 @@ sleep 2
 
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
-shutt apt update && apt install -y curl git zsh man 2>/dev/null
+shutt apt update 2>/dev/null
+shutt apt install -y curl git zsh man 2>/dev/null
 sleep 2
 
 # Installing SUDO.
@@ -162,14 +163,13 @@ termux-reload-settings
 # Run a ZSH shell, opens the p10k config wizard.
 banner
 echo -n -e "Installation complete, gimme cookies! \033[0K\r"
-echo ""
-echo ""
 sleep 3
 
 # Restore cursor.
 setterm -cursor on
 
 if ! grep -lq "zsh" "$SHELL"; then
+    clear
     exec zsh -l
 fi
 exit
