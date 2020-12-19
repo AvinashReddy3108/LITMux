@@ -57,7 +57,7 @@ fi
 if [ -f ~/.zshrc ]; then
     echo -n -e "Backing up current ZSH configuration. \033[0K\r"
     mkdir -p ~/storage/shared/LITMux/backup
-    mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc.bak
+    mv ~/.zshrc ~/storage/shared/LITMux/backup/zshrc-$(date +%Y.%m.%d-%H:%M:%S).bak
     sleep 2
 fi
 
@@ -116,7 +116,7 @@ EOF
 sleep 2
 
 # Shell aliases/functions.
-echo -n -e "Adding some shell aliases to make life easier. \033[0K\r"
+echo -n -e "Adding some shell aliases/functions to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
@@ -128,6 +128,26 @@ function lit-colors() {
   else
     echo "Can't connect to color schemes repository."
   fi
+}
+
+function lit-update() {
+    echo -n -e "Updating system packages. \033[0K\r"
+    pkg upgrade -y
+    clear
+    
+    echo -n -e "Updating ZSH/Zinit stuff. \033[0K\r"
+    zi update --all
+    clear
+    
+    echo -n -e "Updating SUDO. \033[0K\r"
+    curl -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
+    clear
+    
+    echo -n -e "Updating Androfetch. \033[0K\r"
+    curl -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
+    clear
+    
+    echo -n -e "Updated succesfully, enjoy! \033[0K\r"
 }
 
 alias fetch='androfetch'
