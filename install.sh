@@ -43,7 +43,7 @@ sleep 2
 
 # Installing SUDO.
 echo -n -e "Installing SUDO. \033[0K\r"
-curl -fsSL -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
+curl -fsSL 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/sudo
 chmod u+x $PREFIX/bin/sudo
 sleep 2
 
@@ -145,7 +145,7 @@ function lit-update() {
     clear
     
     echo "Updating SUDO..."
-    curl -o $PREFIX/bin/sudo 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo'
+    curl -L 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/sudo
     clear
     
     echo "Updating Androfetch...."
