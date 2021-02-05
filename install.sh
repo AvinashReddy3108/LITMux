@@ -38,13 +38,15 @@ sleep 2
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
 shutt apt update 2>/dev/null
-shutt apt install -y curl git zsh man 2>/dev/null
+shutt apt install -y curl git zsh man jq 2>/dev/null
 sleep 2
 
-# Installing SUDO.
-echo -n -e "Installing SUDO. \033[0K\r"
-curl -fsSL 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/sudo
-chmod u+x $PREFIX/bin/sudo
+# Installing BetterSUDO.
+echo -n -e "Installing agnostic-apollo's SUDO wrapper (as bsudo). \033[0K\r"
+curl -fsSL 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/bsudo
+owner="$(stat -c "%u" "$PREFIX/bin")"
+chown "$owner:$owner" "$PREFIX/bin/bsudo"
+chmod 700 "$PREFIX/bin/bsudo"
 sleep 2
 
 # Giving Storage permision to Termux App.
@@ -71,7 +73,7 @@ echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
 (echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
 sleep 2
 
-# Installing AndroFetch (slim AF neofetch replacement)
+# Installing AndroFetch (slim AF 'neofetch' replacement)
 echo -n -e "Installing AndroFetch. \033[0K\r"
 curl -fsSL -o $PREFIX/bin/androfetch https://raw.githubusercontent.com/laraib07/androfetch/main/androfetch
 chmod u+x $PREFIX/bin/androfetch
@@ -88,9 +90,9 @@ cat <<'EOF' >> ~/.zshrc
 
 # Loading some(?) Oh-My-ZSH libs with ZInit Turbo!
 zinit lucid light-mode for \
-    OMZ::lib/history.zsh \
-    OMZ::lib/completion.zsh \
-    OMZ::lib/key-bindings.zsh
+    OMZL::history.zsh \
+    OMZL::completion.zsh \
+    OMZL::key-bindings.zsh
 EOF
 sleep 2
 
@@ -102,8 +104,8 @@ cat <<'EOF' >> ~/.zshrc
 zinit wait lucid light-mode for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
       zdharma/fast-syntax-highlighting \
-      OMZ::plugins/colored-man-pages \
-      OMZ::plugins/git \
+      OMZP::colored-man-pages \
+      OMZP::git \
   atload"!_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
@@ -144,8 +146,11 @@ function lit-update() {
     zi update --all
     clear
     
-    echo "Updating SUDO..."
-    curl -L 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/sudo
+    echo "Updating bSUDO..."
+    curl -L 'https://github.com/agnostic-apollo/sudo/releases/latest/download/sudo' -o $PREFIX/bin/bsudo
+    owner="$(stat -c "%u" "$PREFIX/bin")"
+    chown "$owner:$owner" "$PREFIX/bin/bsudo"
+    chmod 700 "$PREFIX/bin/bsudo"
     clear
     
     echo "Updating Androfetch...."
