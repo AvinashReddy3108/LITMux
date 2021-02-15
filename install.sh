@@ -38,7 +38,7 @@ sleep 2
 # Updating package repositories and installing packages.
 echo -n -e "Installing required packages. \033[0K\r"
 shutt apt update 2>/dev/null
-shutt apt install -y curl git zsh man jq 2>/dev/null
+shutt apt install -y curl git zsh man jq perl fzf 2>/dev/null
 sleep 2
 
 # Installing BetterSUDO.
@@ -119,6 +119,16 @@ cat <<'EOF' >> ~/.zshrc
 
 # Powerlevel10k Theme.
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+EOF
+sleep 2
+
+# Setting up FZF (keybinds and completion).
+echo -n -e "Setting up FZF keybinds and completion. \033[0K\r"
+cat <<'EOF' >> ~/.zshrc
+# FZF (keybinds and completion).
+zinit wait lucid is-snippet for \
+    $PREFIX/share/fzf/key-bindings.zsh \
+    $PREFIX/share/fzf/completion.zsh
 EOF
 sleep 2
 
