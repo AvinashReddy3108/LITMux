@@ -137,13 +137,25 @@ echo -n -e "Adding some shell aliases/functions to make life easier. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
 
 # Add your aliases/functions here!
+
+#### FUNCTIONS #####
 function lit-colors() {
-  if curl -Is https://git.io | head -n 1 | grep -lq 'OK'; then
-    echo "Fetching color schemes from repository...."
+    if [ $(curl -I https://git.io 2>&1 | awk '/HTTP\// {print $2}') -eq 200 ]; then
+    echo "Loading color scheme menu, please wait."
     bash -c "$(curl -fsSL 'https://git.io/JURDN')"
     clear
   else
     echo "Can't connect to color schemes repository."
+  fi
+}
+
+function lit-fonts() {
+  if [ $(curl -I https://git.io 2>&1 | awk '/HTTP\// {print $2}') -eq 200 ]; then
+    echo "Loading font style menu, please wait."
+    bash -c "$(curl -fsSL 'https://git.io/JtHgC')"
+    clear
+  else
+    echo "Can't connect to font styles repository."
   fi
 }
 
@@ -172,6 +184,7 @@ function lit-update() {
     clear
 }
 
+#### ALIASES #####
 alias fetch='androfetch'
 
 EOF
