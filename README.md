@@ -8,6 +8,7 @@ This is a simple, personal bootstrap script for [Termux](https://play.google.com
     - A really fast and reliable [syntax-highlighter](https://github.com/zdharma/fast-syntax-highlighting).
     - Reliable [shell completions](https://github.com/zsh-users/zsh-completions) and [automatic suggestions](https://github.com/zsh-users/zsh-autosuggestions).
     - A color-scheme chooser with large library of themes (Ported from [Gogh](https://github.com/Mayccoll/Gogh), and hosted [here](https://github.com/AvinashReddy3108/Gogh4Termux) by yours truly).
+    - A huge library of fonts from the [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts) project.
     - The fast, powerful, and highly customizable [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme.
 
 ## Requirements:
@@ -28,4 +29,5 @@ Don't worry, the existing `.zshrc` file will be backed up in your storage for la
  - [Cabbagec](https://github.com/Cabbagec) for his [termux-ohmyzsh](https://github.com/Cabbagec/termux-ohmyzsh) script.
  - The contributors of the [ZInit](https://github.com/zdharma/zinit) framework to maintain such an awesome project.
  - All of the color schemes are ported by me from [Gogh](https://github.com/Mayccoll/Gogh), they deserve their kudos.
+ - The [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts) project, for the awesome fonts.
  - [romkatv](https://github.com/romkatv) for the awesome [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH.
