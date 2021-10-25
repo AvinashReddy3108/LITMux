@@ -125,10 +125,14 @@ sleep 2
 # Setting up FZF (keybinds and completion).
 echo -n -e "Setting up FZF keybinds and completion. \033[0K\r"
 cat <<'EOF' >> ~/.zshrc
+
 # FZF (keybinds and completion).
 zinit wait lucid is-snippet for \
     $PREFIX/share/fzf/key-bindings.zsh \
     $PREFIX/share/fzf/completion.zsh
+
+# Use 16 colors
+export FZF_DEFAULT_OPTS='--color 16'
 EOF
 sleep 2
 
@@ -198,14 +202,18 @@ if [ ! -f ~/.termux/font.ttf ]; then
 fi
 
 # Set a default color scheme.
-echo -n -e "Setting up a new color scheme. \033[0K\r"
-curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
-sleep 2
+if [ ! -f ~/.termux/colors.properties ]; then
+    echo -n -e "Setting up a new color scheme. \033[0K\r"
+    curl -fsSL -o ~/.termux/colors.properties 'https://raw.githubusercontent.com/AvinashReddy3108/Gogh4Termux/master/_base.properties'
+    sleep 2
+fi
 
-# Add new buttons to the Termux bottom bar.
-echo -n -e "Setting up some extra keys in Termux. \033[0K\r"
-curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
-sleep 2
+# Set up Termux config file.
+if [ ! -f ~/.termux/colors.properties ]; then
+    echo -n -e "Setting up Termux's global configuration. \033[0K\r"
+    curl -fsSL -o ~/.termux/termux.properties 'https://raw.githubusercontent.com/AvinashReddy3108/LitMux/master/.termux/termux.properties'
+    sleep 2
+fi
 
 # Reload Termux settings.
 termux-reload-settings
