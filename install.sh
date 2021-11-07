@@ -103,7 +103,7 @@ cat <<'EOF' >> ~/.zshrc
 # Syntax highlighting, completions, auto-suggestions and some other plugins.
 zinit wait lucid light-mode for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
-      zdharma/fast-syntax-highlighting \
+      zdharma-continuum/fast-syntax-highlighting \
       OMZP::colored-man-pages \
       OMZP::git \
   atload"!_zsh_autosuggest_start" \
