@@ -70,7 +70,7 @@ sleep 2
 
 # Installing ZInit.
 echo -n -e "Installing ZInit framework for ZSH. \033[0K\r"
-(echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)") &> /dev/null
+(echo 'Y' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/master/doc/install.sh)") &> /dev/null
 sleep 2
 
 # Installing AndroFetch (slim AF 'neofetch' replacement)
