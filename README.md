@@ -25,6 +25,22 @@ bash -c "$(curl -fsSL https://git.io/Jei6P)"
 Don't worry, the existing `.zshrc` file will be backed up in your storage for later. You can find it in the `backup` directory at the location below.
 > Internal Storage (`/sdcard` [or] `/storage/emulated/0`) -> `LITMux` -> `backup` -> `zshrc.bak`
 
+## Customization
+- Customize your prompt (powerlevel10k wizard)
+```bash
+p10k configure
+```
+
+- Change color schemes
+```bash
+lit-colors
+```
+
+- Change terminal font
+```bash
+lit-fonts
+```
+
 ## Credits/Thanks:
  - [Cabbagec](https://github.com/Cabbagec) for his [termux-ohmyzsh](https://github.com/Cabbagec/termux-ohmyzsh) script.
  - The contributors of the [ZInit](https://github.com/zdharma/zinit) framework to maintain such an awesome project.
